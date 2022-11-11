@@ -5,7 +5,7 @@ export const Navbar = () =>{
     return (
         <>
             <nav className={classes.sidebar}>
-                <div className={classes.item}>
+                <div className={`${classes.item} ${classes.itemProfile}`}>
                     <a href="src/components/Navbar/Navbar#">Profile </a>
                 </div>
                 <div className={classes.item}>
