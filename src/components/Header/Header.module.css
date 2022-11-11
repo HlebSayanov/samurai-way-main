@@ -5,7 +5,7 @@
 .header {
     grid-area: header;
 
-    background-color: yellowgreen;
+    background-color: #fff8ed;
 }
 .header img{
     width: 50px;
