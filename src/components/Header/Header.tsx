@@ -1,14 +1,18 @@
 import React from "react";
+import classes from './Header.module.css'
 
 
 export const Header = () => {
     return (
-        <div>
-            <a href="src/components/Header/Header#">Home</a>-
-            <a href="src/components/Header/Header#">News Feed</a>-
-            <a href="src/components/Header/Header#">Messages</a>-
-
+    <>
+        <div className={classes.header}>
+            <div>
+                <img
+                    src="https://cdn.dribbble.com/userupload/3158902/file/original-7c71bfa677e61dea61bc2acd59158d32.jpg?resize=400x0"
+                    alt="logo"/>
+            </div>
         </div>
-    )
-}
 
+    </>
+    );
+}
