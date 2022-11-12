@@ -1,11 +1,8 @@
 .sidebar {
     grid-area: sidebar;
-    background-color: #fff8ed;
+    background-color: #c5c5c7;
 }
 .item a {
-    color: darkgoldenrod;
+    color: white;
     text-decoration: none;
-}
-.itemProfile a{
-    color: gold;
 }
