@@ -3,6 +3,7 @@
 
 
 .header {
+
     grid-area: header;
 
     background-color: #fff8ed;

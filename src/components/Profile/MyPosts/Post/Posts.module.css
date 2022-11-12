@@ -1,0 +1,8 @@
+.item img {
+    width: 50px;
+    border-radius: 50%;
+}
+.like {
+    font-weight: bold;
+    color: black;
+}

@@ -1,7 +1,14 @@
+/*body {*/
+/*  background-color: #3a2e2e;*/
+/*}*/
+body {
+  background-color: #7f7f81;
+}
 .app-wrapper{
   max-width: 1200px;
   margin: 0 auto;
   padding-top: 20px;
+
 
   display: grid;
   grid-template-columns: 2fr 10fr;
