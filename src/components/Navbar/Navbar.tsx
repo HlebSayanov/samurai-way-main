@@ -6,19 +6,19 @@ export const Navbar = () =>{
         <>
             <nav className={classes.sidebar}>
                 <div className={`${classes.item} ${classes.itemProfile}`}>
-                    <a href="src/components/Navbar/Navbar#">Profile </a>
+                    <a href="/profile">Profile </a>
                 </div>
                 <div className={classes.item}>
-                    <a href="src/components/Navbar/Navbar#">Messages </a>
+                    <a href="/dialogs">Messages </a>
                 </div>
                 <div className={classes.item}>
-                    <a href="src/components/Navbar/Navbar#">News </a>
+                    <a href="/news">News </a>
                 </div>
                 <div className={classes.item}>
-                    <a href="src/components/Navbar/Navbar#">Music </a>
+                    <a href="/music">Music </a>
                 </div>
                 <div className={classes.item}>
-                    <a href="src/components/Navbar/Navbar#">Settings </a>
+                    <a href="/settings">Settings </a>
                 </div>
 
             </nav>

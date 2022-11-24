@@ -2,7 +2,7 @@ import React from 'react';
 import classes from "./Dialogs.module.css";
 
 
-const Dialogs = () => {
+export const Dialogs = () => {
     return (
         <div>
             Dialogs
@@ -10,4 +10,3 @@ const Dialogs = () => {
     );
 };
 
-export default Dialogs;
