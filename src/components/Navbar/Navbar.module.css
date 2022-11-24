@@ -1,10 +1,16 @@
 .sidebar {
     grid-area: sidebar;
     background-color: #fff8ed;
+    padding: 20px;
 }
+
 .item a {
     color: #ffb703;
-    text-decoration: none;
+    text-decoration: none;;
+}
+.item a.activeLink{
+    color: #545050;
+    font-weight: bold;
 }
 
 .itemProfile a {
