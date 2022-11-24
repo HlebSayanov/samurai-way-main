@@ -19,8 +19,11 @@ body {
   grid-gap: 10px;
 }
 
+.app-wrapper-content {
+  grid-area: content;
+  background-color: #fff8ed;
 
-
+}
 
 
 

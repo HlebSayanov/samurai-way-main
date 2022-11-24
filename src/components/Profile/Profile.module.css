@@ -1,6 +1,4 @@
-.content {
-    grid-area: content;
-    background-color: #fff8ed;
+
 
     /*display: grid;*/
 
@@ -10,7 +8,7 @@
     /*        'myPost'*/
     /*        'newPost'*/
     /*        'posts';*/
-}
+
 
 .content img {
 
@@ -23,21 +21,7 @@
    margin-bottom: 10px;
 }
 
-.avatar {
-    grid-area: avatar;
-}
 
-.myPost {
-    grid-area: myPost;
-}
-
-.newPost {
-    grid-area: newPost;
-}
-
-.posts {
-    grid-area: posts;
-}
 
 .item {
     color: #1e1d1e;
