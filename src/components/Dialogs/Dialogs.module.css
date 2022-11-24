@@ -1,0 +1,22 @@
+.dialogs{
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    padding: 15px;
+}
+
+.dialogsItems{
+    color: slategrey;
+}
+.dialogsItems .activeDialog{
+    font-weight: bold;
+    color: darkgoldenrod;
+}
+
+.messages{
+    color: #ffb703;
+}
+
+.messageUser{
+
+}
+
