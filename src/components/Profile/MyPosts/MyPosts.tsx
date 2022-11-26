@@ -7,9 +7,11 @@ export const MyPosts = () => {
     return (
         <>
             <div className={classes.myPosts}>
-                My post
+                <h3>My post</h3>
                 <div>
-                    <textarea></textarea>
+                    <div>
+                        <textarea></textarea>
+                    </div>
                     <button>add post</button>
                 </div>
 

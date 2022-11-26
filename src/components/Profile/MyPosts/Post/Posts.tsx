@@ -7,7 +7,7 @@ type PostsType = {
 }
 
 export const Posts = (props: PostsType) => {
-    debugger
+
     return (
 
         <div className={classes.post}>
@@ -17,6 +17,7 @@ export const Posts = (props: PostsType) => {
                 <span>{props.title}</span>
                 <div className={classes.like}>
                     {props.counts} like
+                    {props.counts}  like
                 </div>
             </div>
         </div>

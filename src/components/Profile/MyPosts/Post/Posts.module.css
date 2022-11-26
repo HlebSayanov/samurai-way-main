@@ -5,4 +5,8 @@
 .like {
     font-weight: bold;
     color: black;
+
+}
+.post {
+    padding: 10px;
 }

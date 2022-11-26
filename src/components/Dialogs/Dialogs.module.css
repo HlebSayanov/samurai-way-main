@@ -5,26 +5,12 @@
 }
 
 .dialogsItems {
-    color: slategrey;
+    color: #2b65a1;
+    border: 2px solid red;
 }
 
-.dialogsItems .activeDialog {
-    font-weight: 900;
-    color: #c200c2;
 
-
-}
-
-.dialog a {
-    text-decoration: none;
-    color: blue
-}
 
 .messages {
     color: #ffb703;
 }
-
-.messageUser {
-
-}
-

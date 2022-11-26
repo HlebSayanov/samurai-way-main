@@ -1,33 +1,25 @@
 import React from 'react';
 import classes from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
+import {Dialog} from "./Dialog/Dialog";
+import {Messages} from "./Messages/Messages";
 
 
 export const Dialogs = () => {
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <div className={classes.dialog + ' ' + classes.activeDialog}>
-                  <NavLink to={'/dialogs/1'}>Hleb</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to={'/dialogs/2'}> Andrey</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to={'/dialogs/3'}> Viktoryia</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to={'/dialogs/4'}> Iryna</NavLink>
-                </div>
-                <div className={classes.dialog}>
-                    <NavLink to={'/dialogs/5'}> Yuri</NavLink>
-                </div>
-            </div>
+            <Dialog name={'Hleb'} id={'1'}/>
+            <Dialog name={'Yuriy'} id={'2'}/>
+            <Dialog name={'Alici'} id={'3'}/>
+            <Dialog name={'Hyper'} id={'4'}/>
+            <Dialog name={'Robinson'} id={'5'}/>
+               </div>
 
             <div className={classes.messages}>
-                <div className={classes.messageUser}>Hello</div>
-                <div className={classes.messageUser}>Welcom to social network</div>
-                <div className={classes.messageUser}>How to go Cyprus</div>
+              <Messages text={'Hello my friend'}/>
+              <Messages text={'Welcome to Sayanara social network'}/>
+              <Messages text={'One Love'}/>
 
             </div>
         </div>

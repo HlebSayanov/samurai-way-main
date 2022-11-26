@@ -1,0 +1,29 @@
+
+
+    /*display: grid;*/
+
+    /*grid-template-areas:*/
+    /*        'headerImg'*/
+    /*        'avatar'*/
+    /*        'myPost'*/
+    /*        'newPost'*/
+    /*        'posts';*/
+
+
+.content img {
+
+    width: 100%;
+    grid-area: headerImg;
+    border-radius: 20px;
+
+}
+.headerImg{
+   margin-bottom: 10px;
+}
+
+
+
+.item {
+    color: #1e1d1e;
+}
+
