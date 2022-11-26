@@ -1,9 +1,13 @@
-import React from "react";
+import React, {useState} from "react";
 import classes from "./MyPosts.module.css";
 import {Posts} from "./Post/Posts";
 
 
 export const MyPosts = () => {
+
+
+
+
     return (
         <>
             <div className={classes.myPosts}>
@@ -14,10 +18,10 @@ export const MyPosts = () => {
                     </div>
                     <button>add post</button>
                 </div>
-
             </div>
-           <Posts title={'Hello my friend. Haw are you?'} counts={4}/>
-           <Posts title={'When I returned home ?'} counts={10}/>
+
+            <Posts title={'Hello my friend. Haw are you?'}   />
+            <Posts title={'When I returned home ?'}     />
 
         </>
     )

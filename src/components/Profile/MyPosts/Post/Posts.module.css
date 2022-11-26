@@ -3,6 +3,8 @@
     border-radius: 50%;
 }
 .like {
+    display: flex;
+
     font-weight: bold;
     color: black;
 
