@@ -1,8 +1,14 @@
 /*body {*/
 /*  background-color: #3a2e2e;*/
 /*}*/
+
+
+
 body {
   background-color: #7f7f81;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+
 }
 .app-wrapper{
   max-width: 1200px;

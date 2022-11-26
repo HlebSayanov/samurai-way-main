@@ -1,22 +1,30 @@
-.dialogs{
+.dialogs {
     display: grid;
     grid-template-columns: 2fr 10fr;
     padding: 15px;
 }
 
-.dialogsItems{
+.dialogsItems {
     color: slategrey;
 }
-.dialogsItems .activeDialog{
-    font-weight: bold;
-    color: darkgoldenrod;
+
+.dialogsItems .activeDialog {
+    font-weight: 900;
+    color: #c200c2;
+
+
 }
 
-.messages{
+.dialog a {
+    text-decoration: none;
+    color: blue
+}
+
+.messages {
     color: #ffb703;
 }
 
-.messageUser{
+.messageUser {
 
 }
 
