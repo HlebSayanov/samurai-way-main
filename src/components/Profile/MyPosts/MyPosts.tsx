@@ -3,15 +3,21 @@ import classes from "./MyPosts.module.css";
 import {Posts} from "./Post/Posts";
 
 
-export const MyPosts = () => {
 
-    const postData = [
-        {title: 'Hello my friend. Haw are you?'},
-        {title: 'When I returned home ?'},
-        {title: 'fdksdfsjsdfo ?'},
-        {title: 'When I returned home ?'}
-    ]
-    const postItem = postData.map(el => <Posts title={el.title}/>)
+
+export type MyPostsType = {
+    postData:postDataType[]
+ }
+
+type postDataType = {
+    title:string
+}
+
+
+export const MyPosts = (props: MyPostsType) => {
+
+
+      const postItem = props.postData.map(el => <Posts userMessage={el.title}/>)
 
     return (
         <>
@@ -24,9 +30,9 @@ export const MyPosts = () => {
                     <button>add post</button>
                 </div>
             </div>
-
-
+            {/*вызваю через мар  Posts (смотри выше)*/}
             {postItem}
+
 
         </>
     )

@@ -3,9 +3,9 @@ import classes from "./Posts.module.css";
 import {Button} from "../../../Button/Button";
 
 type PostsType = {
-    title: string,
-
+    userMessage: string,
 }
+
 
 export const Posts = (props: PostsType) => {
 
@@ -31,7 +31,7 @@ let[dislikes, setDislikes]=useState(0)
             <div className={classes.item}>
                 <img src="https://weblinks.ru/wp-content/uploads/2021/04/3zeynnx6ija.jpg"
                      alt=""/>
-                <span>{props.title}</span>
+                <span>{props.userMessage}</span>
                 <div className={classes.like}>
                     <span>
                         <Button name={'like ' + likes} callback={onClickCounterLike}/>
