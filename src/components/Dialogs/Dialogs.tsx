@@ -22,18 +22,18 @@ export const Dialogs = () => {
     ]
 
 
+    let dialogItems = dialogData.map(el => <Dialog name={el.name} id={el.id}/>)
+    let mesageItems = messageData.map(el => <Messages text={el.title}/>
+    )
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <Dialog name={dialogData[0].name} id={dialogData[0].id}/>
-
+                {dialogItems}
             </div>
 
             <div className={classes.messages}>
-                <Messages text={messageData[0].title}/>
-                <Messages text={messageData[1].title}/>
-                <Messages text={messageData[2].title}/>
-
+                {mesageItems}
             </div>
         </div>
     );

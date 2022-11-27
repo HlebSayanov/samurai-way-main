@@ -5,9 +5,13 @@
 }
 
 .dialogsItems {
-    color: #2b65a1;
-    border: 2px solid red;
+    color: rgba(147, 134, 134, 1);
+    border: 2px solid #cb0c0c;
+
+
+
 }
+
 
 
 

@@ -7,9 +7,11 @@ export const MyPosts = () => {
 
     const postData = [
         {title: 'Hello my friend. Haw are you?'},
+        {title: 'When I returned home ?'},
+        {title: 'fdksdfsjsdfo ?'},
         {title: 'When I returned home ?'}
     ]
-
+    const postItem = postData.map(el => <Posts title={el.title}/>)
 
     return (
         <>
@@ -23,8 +25,8 @@ export const MyPosts = () => {
                 </div>
             </div>
 
-            <Posts title={postData[0].title}/>
-            <Posts title={postData[1].title}/>
+
+            {postItem}
 
         </>
     )
