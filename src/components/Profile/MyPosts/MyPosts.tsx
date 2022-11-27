@@ -5,7 +5,10 @@ import {Posts} from "./Post/Posts";
 
 export const MyPosts = () => {
 
-
+    const postData = [
+        {title: 'Hello my friend. Haw are you?'},
+        {title: 'When I returned home ?'}
+    ]
 
 
     return (
@@ -20,8 +23,8 @@ export const MyPosts = () => {
                 </div>
             </div>
 
-            <Posts title={'Hello my friend. Haw are you?'}   />
-            <Posts title={'When I returned home ?'}     />
+            <Posts title={postData[0].title}/>
+            <Posts title={postData[1].title}/>
 
         </>
     )

@@ -6,20 +6,33 @@ import {Messages} from "./Messages/Messages";
 
 
 export const Dialogs = () => {
+
+    const dialogData = [
+        {id: 1, name: 'Hleb'},
+        {id: 2, name: 'Yuriy'},
+        {id: 3, name: 'Alici'},
+        {id: 4, name: 'Hyper'},
+        {id: 5, name: 'Robinson'},
+    ]
+
+    const messageData = [
+        {title: 'Hello my friend'},
+        {title: 'Welcome to Sayanara social network'},
+        {title: 'One Love'},
+    ]
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-            <Dialog name={'Hleb'} id={'1'}/>
-            <Dialog name={'Yuriy'} id={'2'}/>
-            <Dialog name={'Alici'} id={'3'}/>
-            <Dialog name={'Hyper'} id={'4'}/>
-            <Dialog name={'Robinson'} id={'5'}/>
-               </div>
+                <Dialog name={dialogData[0].name} id={dialogData[0].id}/>
+
+            </div>
 
             <div className={classes.messages}>
-              <Messages text={'Hello my friend'}/>
-              <Messages text={'Welcome to Sayanara social network'}/>
-              <Messages text={'One Love'}/>
+                <Messages text={messageData[0].title}/>
+                <Messages text={messageData[1].title}/>
+                <Messages text={messageData[2].title}/>
 
             </div>
         </div>
