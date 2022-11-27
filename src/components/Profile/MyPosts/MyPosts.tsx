@@ -6,18 +6,18 @@ import {Posts} from "./Post/Posts";
 
 
 export type MyPostsType = {
-    postData:postDataType[]
+    postPage:PostPageType[]
  }
 
-type postDataType = {
-    title:string
+type PostPageType = {
+    message:string
 }
 
 
 export const MyPosts = (props: MyPostsType) => {
 
 
-      const postItem = props.postData.map(el => <Posts userMessage={el.title}/>)
+      const postItem = props.postPage.map(el => <Posts userMessage={el.message}/>)
 
     return (
         <>
