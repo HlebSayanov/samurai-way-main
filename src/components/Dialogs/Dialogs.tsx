@@ -3,10 +3,15 @@ import classes from "./Dialogs.module.css";
 import {NavLink} from "react-router-dom";
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
-import state from "../../redux/state";
+import state, {DialogType, MessageType} from "../../redux/state";
+
+type DialogsType={
+    dialogs:DialogType[]  // state
+    messages:MessageType[]
+}
 
 
-export const Dialogs = () => {
+export const Dialogs = (props: DialogsType) => {
 
     // const dialogData = [
     //     {id: 1, name: 'Hleb'},
@@ -23,8 +28,8 @@ export const Dialogs = () => {
     // ]
 
 
-    let dialogItems = state.dialogPage.dialogs.map(el => <Dialog name={el.name} id={el.id}/>)
-    let messageItems = state.dialogPage.messages.map(el => <Messages text={el.message}/>
+    let dialogItems = props.dialogs.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array
+    let messageItems = props.messages.map(el => <Messages  text={el.message} id={el.id}/> // messgae array data
     )
 
     return (

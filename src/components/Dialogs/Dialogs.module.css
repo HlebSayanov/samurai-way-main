@@ -5,8 +5,9 @@
 }
 
 .dialogsItems {
-    color: rgba(147, 134, 134, 1);
+    color: rgba(147, 134, 134,1);
     border: 2px solid #cb0c0c;
+    opacity: 0.5;
 
 
 
@@ -16,5 +17,12 @@
 
 
 .messages {
+    display: flex;
+    justify-content: space-between;
+
+
+
     color: #ffb703;
+    border: 4px solid darkslategray;
+
 }

@@ -3,14 +3,19 @@ import classes from "./Profile.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {Posts} from "./MyPosts/Post/Posts";
-import state from "../../redux/state";
+import state, {DialogType, MessageType, PostType} from "../../redux/state";
 
 
-export const Profile = () => {
+export type PostDataType = {
+    postPage: PostType[]
+}
+let a = state.dialogPage.dialogs
+console.log(a)
+
+export const Profile = (props:PostDataType) => {
 
 
-    let postPage = state.postPage.posts // переменная для поста с инпутом
-
+  // переменная для поста с инпутом
 
 
 
@@ -20,7 +25,7 @@ export const Profile = () => {
 
         <div className={classes.content}>
             <ProfileInfo/>
-            <MyPosts postPage={postPage}/>
+            <MyPosts postPage={props.postPage}/>
 
         </div>
 

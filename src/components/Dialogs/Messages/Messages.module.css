@@ -1,5 +1,16 @@
-
-.messageUser {
-
+.MessagesUsers {
+    border: 3px solid red;
 }
 
+
+.messageUser {
+    border: 2px solid blue;
+}
+
+
+.userImg {
+    width: 50px;
+    border-radius: 50%;
+    border: 2px solid yellow;
+    box-shadow: #1e1d1e;
+}

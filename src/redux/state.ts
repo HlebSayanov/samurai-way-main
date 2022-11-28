@@ -1,28 +1,28 @@
 
-type MessageType = {
+export type MessageType = {
     id: number,
     message: string
 }
-type DialogType = {
+export type DialogType = {
     id: number,
     name: string
 }
-type PostType = {
+export type PostType = {
     id: number,
     message: string,
     likeCount: number
 }
-type PostDataType = {
+export type PostDataType = {
     posts: PostType[]
 }
-type DialogDataType = {
+export type DialogDataType = {
     dialogs: DialogType[],
     messages: MessageType[]
 }
-type Sidebar = {}
+export type Sidebar = {}
 
 
-type RootStateType = {
+export type RootStateType = {
     postPage:PostDataType,
     dialogPage:DialogDataType,
     sidebar:Sidebar
@@ -48,7 +48,7 @@ let state:RootStateType = {
         messages: [
             {id: 1, message: 'Hello my friend'},
             {id: 2, message: 'Welcome to Sayanara social network'},
-            {id: 3, message: 'One Love'}
+            // {id: 3, message: 'One Love'}
         ]
     },
         sidebar: {}
