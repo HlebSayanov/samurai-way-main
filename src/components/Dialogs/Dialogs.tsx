@@ -13,19 +13,7 @@ type DialogsType={
 
 export const Dialogs = (props: DialogsType) => {
 
-    // const dialogData = [
-    //     {id: 1, name: 'Hleb'},
-    //     {id: 2, name: 'Yuriy'},
-    //     {id: 3, name: 'Alici'},
-    //     {id: 4, name: 'Hyper'},
-    //     {id: 5, name: 'Robinson'},
-    // ]
-    //
-    // const messageData = [
-    //     {title: 'Hello my friend'},
-    //     {title: 'Welcome to Sayanara social network'},
-    //     {title: 'One Love'},
-    // ]
+
 
 
     let dialogItems = props.dialogs.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array

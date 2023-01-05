@@ -3,21 +3,24 @@ import classes from "./MyPosts.module.css";
 import {Posts} from "./Post/Posts";
 
 
-
-
 export type MyPostsType = {
-    postPage:PostPageType[]
- }
+    postPage: PostPageType[]
+}
 
 type PostPageType = {
-    message:string
+    message: string
 }
 
 
 export const MyPosts = (props: MyPostsType) => {
 
 
-      const postItem = props.postPage.map(el => <Posts userMessage={el.message}/>)
+    const postItem = props.postPage.map(el => <Posts userMessage={el.message}/>)
+
+    const textARef = React.createRef<HTMLTextAreaElement>()
+    const OnClickHandlerAdd = () => {
+        alert(textARef.current?.value)
+    }
 
     return (
         <>
@@ -25,9 +28,9 @@ export const MyPosts = (props: MyPostsType) => {
                 <h3>My post</h3>
                 <div>
                     <div>
-                        <textarea></textarea>
+                        <textarea ref={textARef}></textarea>
                     </div>
-                    <button>add post</button>
+                    <button onClick={OnClickHandlerAdd}>add post</button>
                 </div>
             </div>
             {/*вызваю через мар  Posts (смотри выше)*/}
