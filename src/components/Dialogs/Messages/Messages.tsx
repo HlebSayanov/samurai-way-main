@@ -12,6 +12,7 @@ export const Messages = (props: MessagesType) => {
         <div className={classes.messagesUsers}>
             <img className={classes.userImg} src="https://icon-library.com/images/morty-icon/morty-icon-4.jpg" alt="avatar"/>
             <div className={classes.messageUser}>{props.text}</div>
+            <textarea ></textarea>
         </div>
     );
 };

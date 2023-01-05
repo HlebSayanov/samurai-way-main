@@ -14,11 +14,9 @@ let[dislikes, setDislikes]=useState(0)
 
 
     const onClickCounterLike = () => {
-
         setLikes(likes +1)
         console.log(likes)
     }
-
 
     const onClickCounterDislike = () => {
         setDislikes(dislikes+1)

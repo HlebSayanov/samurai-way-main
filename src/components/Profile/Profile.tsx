@@ -3,11 +3,14 @@ import classes from "./Profile.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {Posts} from "./MyPosts/Post/Posts";
-import state, {DialogType, MessageType, PostType} from "../../redux/state";
+import state, {addPost, DialogType, MessageType, PostType} from "../../redux/state";
 
 
 export type PostDataType = {
     postPage: PostType[]
+    addPost:(valuePost:string)=>void
+    updateAddPost:(valueEvent:string) =>void
+    newPostText:string
 }
 let a = state.dialogPage.dialogs
 console.log(a)
@@ -25,7 +28,12 @@ export const Profile = (props:PostDataType) => {
 
         <div className={classes.content}>
             <ProfileInfo/>
-            <MyPosts postPage={props.postPage}/>
+            <MyPosts postPage={props.postPage}
+                     newPostText={props.newPostText}
+                     addPost={addPost}
+                     updateAddPost={props.updateAddPost}
+
+                    />
 
         </div>
 
