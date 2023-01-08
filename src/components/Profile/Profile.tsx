@@ -3,7 +3,7 @@ import classes from "./Profile.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import {Posts} from "./MyPosts/Post/Posts";
-import state, {addPost, DialogType, MessageType, PostType} from "../../redux/state";
+import state, {addPostBtn, DialogType, MessageType, PostType} from "../../redux/state";
 
 
 export type PostDataType = {
@@ -30,7 +30,7 @@ export const Profile = (props:PostDataType) => {
             <ProfileInfo/>
             <MyPosts postPage={props.postPage}
                      newPostText={props.newPostText}
-                     addPost={addPost}
+                     addPost={addPostBtn}
                      updateAddPost={props.updateAddPost}
 
                     />

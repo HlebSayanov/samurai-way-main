@@ -1,5 +1,5 @@
 import {log} from "util";
-import {renderTree} from "../render";
+
 
 export type MessageType = {
     id: number,
@@ -32,6 +32,16 @@ export type RootStateType = {
     sidebar: Sidebar
 }
 
+let renderCallback = () => {
+    console.log('sdadas')
+}
+
+export const subscriber = (callbackRender:()=>void)=>{
+    renderCallback = callbackRender
+}
+
+
+
 
 let state: RootStateType = {
     postPage: {
@@ -61,7 +71,7 @@ let state: RootStateType = {
 }
 
 
-export const addPost = (valuePost: string) => {
+export const addPostBtn = (valuePost: string) => {
     const newPost = {
         id: state.postPage.posts.length + 1,
         message: valuePost,
@@ -69,13 +79,13 @@ export const addPost = (valuePost: string) => {
     }
     state.postPage.posts.push(newPost)
     state.postPage.newPostText = ''
-    renderTree(state)
+    renderCallback()
     console.log(state.postPage.posts);
 }
 
 export const updateAddPost = (valueEvent:string) =>{
     state.postPage.newPostText= valueEvent
-     renderTree(state)
+    renderCallback()
 
 }
 
