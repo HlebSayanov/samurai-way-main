@@ -2,20 +2,20 @@ import React from "react";
 import classes from "./Profile.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {Posts} from "./MyPosts/Post/Posts";
-import state, {addPostBtn, DialogType, MessageType, PostType} from "../../redux/state";
+
+import {ActionsTypes, PostDataType} from "../../redux/state";
 
 
-export type PostDataType = {
-    postPage: PostType[]
-    addPost:(valuePost:string)=>void
-    updateAddPost:(valueEvent:string) =>void
-    newPostText:string
+export type ProfileType = {
+    postPage: PostDataType
+    // addPost:(valuePost:string)=>void
+    // updateAddPost:(valueEvent:string) =>void
+    dispatch:(action:ActionsTypes)=>void
+
 }
-let a = state.dialogPage.dialogs
-console.log(a)
 
-export const Profile = (props:PostDataType) => {
+
+export const Profile = (props:ProfileType) => {
 
 
   // переменная для поста с инпутом
@@ -28,10 +28,11 @@ export const Profile = (props:PostDataType) => {
 
         <div className={classes.content}>
             <ProfileInfo/>
-            <MyPosts postPage={props.postPage}
-                     newPostText={props.newPostText}
-                     addPost={addPostBtn}
-                     updateAddPost={props.updateAddPost}
+            <MyPosts postPage={props.postPage.posts}
+                     newPostText={props.postPage.newPostText}
+                     dispatch={props.dispatch}
+                     // addPost={props.addPost}
+                     // updateAddPost={props.updateAddPost}
 
                     />
 

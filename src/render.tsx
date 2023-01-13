@@ -2,8 +2,8 @@
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
-import state, {addPostBtn, RootStateType, updateAddPost} from "./redux/state";
 import {BrowserRouter} from "react-router-dom";
+ import {store} from "./redux/state";
 
 
 
@@ -11,11 +11,9 @@ export const renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <App
-                state={state}
-                // postPage={state.postPage}
-                //  dialogPage={state.dialogPage}
-                 addPost={addPostBtn}
-                 updateAddPost={updateAddPost}
+                store={store}
+                 // addPost={store.addPostBtn.bind(store._state)}
+                 // updateAddPost={store.updateAddPost.bind(store._state)}
             />
         </BrowserRouter>,
         document.getElementById('root')
