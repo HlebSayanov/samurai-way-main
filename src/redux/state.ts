@@ -1,3 +1,6 @@
+import {ActionsTypesProfiles, profilesReducer} from "./profilesReducer";
+import {ActionsTypesDialogs, dialogsReducer} from "./dialogsReducer";
+
 export type MessageType = {
     id: number,
     message: string
@@ -38,47 +41,9 @@ export type StoreType = {
     // updateAddPost: (valueEvent: string) => void // до диспатча
     subscriber: (callbackRender: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsTypesProfiles | ActionsTypesDialogs) => void
 }
-// type AddPostActionType={
-//     type:'ADD-POST'
-//     valuePost:string
-// }     // изночальный тип экшенеов
-// type UpdateAddPostActionType={
-//     type:'UPDATE-ADD-POST'
-//     valueEvent:string
-// } // -//-  // bpy  type  //
-
-export type ActionsTypes = ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateAddPostAC>
-    | ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
-    | ReturnType<typeof updateAddMessageAC>
-
-export const addPostAC = (valuePost: string) => {
-    return {
-        type: "ADD-POST",
-        valuePost: valuePost
-    } as const
-}               // вызывается Myposts
-export const updateAddPostAC = (valueEvent: string) => {
-    return {
-        type: "UPDATE-ADD-POST",
-        valueEvent: valueEvent
-    } as const
-}       //  аналогично
-export const addMessageAC = (valueMessage: string) => {
-    return {
-        type: "ADD-MESSAGE",
-        valueMessage: valueMessage
-    } as const
-}
-export const updateAddMessageAC = (valueEvent: string) => {
-    return {
-        type: "UPDATE-ADD-MESSAGE",
-        valueEvent: valueEvent
-    } as const
-}       //  аналогично
-// вызывается Myposts
+export type ActionTypes = ActionsTypesDialogs | ActionsTypesProfiles
 
 export const store: StoreType = {
     _state: {
@@ -118,36 +83,11 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-        if (action.type === 'ADD-POST') {
-            const newPost = {
-                id: this._state.postPage.posts.length + 1,
-                message: action.valuePost,
-                likeCount: 0
-            }
-            this._state.postPage.posts.push(newPost)
-            this._state.postPage.newPostText = ''
-            this._renderCallback()
-
-        } else if (action.type === 'UPDATE-ADD-POST') {
-            this._state.postPage.newPostText = action.valueEvent
-            this._renderCallback()
-        }
-        else if (action.type === 'ADD-MESSAGE') {
-            const newMessage = {
-                id: this._state.dialogPage.messages.length + 1,
-                message: action.valueMessage
-            }
-            this._state.dialogPage.messages.push(newMessage)
-            this._state.dialogPage.newMessageText =''
-            this._renderCallback()
-        }
-        else if (action.type === 'UPDATE-ADD-MESSAGE') {
-          this._state.dialogPage.newMessageText = action.valueEvent
-
-            this._renderCallback()
-        }
-
+         profilesReducer(this._state.postPage, action)
+        dialogsReducer(this._state.dialogPage, action)
+        this._renderCallback()
     }
+
 
 }
 

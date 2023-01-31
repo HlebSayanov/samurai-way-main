@@ -3,14 +3,15 @@ import classes from "./Profile.module.css";
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
-import {ActionsTypes, PostDataType} from "../../redux/state";
+import { PostDataType} from "../../redux/state";
+import {ActionsTypesProfiles} from "../../redux/profilesReducer";
 
 
 export type ProfileType = {
     postPage: PostDataType
     // addPost:(valuePost:string)=>void
     // updateAddPost:(valueEvent:string) =>void
-    dispatch:(action:ActionsTypes)=>void
+    dispatch:(action:ActionsTypesProfiles)=>void
 
 }
 

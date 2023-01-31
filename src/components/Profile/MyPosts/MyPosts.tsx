@@ -1,7 +1,8 @@
 import React, {ChangeEvent, useState} from "react";
 import classes from "./MyPosts.module.css";
 import {Posts} from "./Post/Posts";
-import {ActionsTypes, addPostAC, PostType, updateAddPostAC} from "../../../redux/state";
+import {PostType} from "../../../redux/state";
+import {ActionsTypesProfiles, addPostAC, updateAddPostAC} from "../../../redux/profilesReducer";
 
 
 
@@ -11,7 +12,7 @@ export type MyPostsType = {
     // addPost: (valuePost: string) => void
     newPostText: string
     // updateAddPost: (valueEvent: string) => void
-    dispatch:(action:ActionsTypes)=>void
+    dispatch:(action:ActionsTypesProfiles)=>void
 }
 
 

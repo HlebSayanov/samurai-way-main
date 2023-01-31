@@ -3,15 +3,14 @@ import classes from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
 import {
-    ActionsTypes,
-    addMessageAC,
-    DialogDataType,
-    updateAddMessageAC
+    DialogDataType
+
 } from "../../redux/state";
+import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogsReducer";
 
 type DialogsType = {
     dialogPage: DialogDataType // state
-    dispatchDialogPage:(action:ActionsTypes)=>void
+    dispatchDialogPage:(action:ActionsTypesDialogs)=>void
 
 }
 
