@@ -13,10 +13,6 @@ import {StoreType} from "./redux/state";
 
 type AppType = {
     store: StoreType
-    // postPage: PostDataType
-    // dialogPage: DialogDataType      // type before dispatch
-    // addPost: (valuePost: string) => void
-    // updateAddPost:(valueEvent:string) =>void
 
 }
 
@@ -33,7 +29,8 @@ const App = (props: AppType) => {
                     postPage={state.postPage}
                     dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={state.dialogPage} dispatchDialogPage={props.store.dispatch.bind(props.store)}/>}/>
+                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={state.dialogPage}
+                                                                dispatchDialogPage={props.store.dispatch.bind(props.store)}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>

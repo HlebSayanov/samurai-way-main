@@ -20,7 +20,7 @@ export const Dialogs = (props: DialogsType) => {
 
 
     let dialogItems = props.dialogPage.dialogs.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array
-    let messageItems = props.dialogPage.messages.map(el => <Messages text={el.message} id={el.id}/> // messgae array data
+    let messageItems = props.dialogPage.messages.map(el => <Messages text={el.message} id={el.id}/> //  messgae array data
     )
 let message = props.dialogPage.newMessageText
     const addMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
