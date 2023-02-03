@@ -31,6 +31,9 @@ export type RootStateType = {
     dialogPage: DialogDataType,
     sidebar: Sidebar
 }
+
+export type ActionTypeforDispatch = ActionsTypesProfiles | ActionsTypesDialogs
+
 export type StoreType = {
     _state: RootStateType
     _renderCallback: () => void
@@ -38,7 +41,7 @@ export type StoreType = {
     // updateAddPost: (valueEvent: string) => void // до диспатча
     subscriber: (callbackRender: () => void) => void
     getState: () => RootStateType
-    dispatch: (action: ActionsTypesProfiles | ActionsTypesDialogs) => void
+    dispatch: (action: ActionTypeforDispatch) => void
 }
 
 export const store: StoreType = {
