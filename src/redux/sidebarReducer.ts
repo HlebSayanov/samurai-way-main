@@ -1,6 +1,6 @@
 import {Sidebar} from "./state";
 
-
-export const sidebarReducer = (state:Sidebar,action:any)=>{
+const initialState:Sidebar={}
+export const sidebarReducer = (state:Sidebar=initialState,action:any)=>{
 
 }

@@ -6,7 +6,27 @@ export type ActionsTypesDialogs =  ReturnType<typeof addMessageAC>// друга�
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateAddPostAC>
 
-export const dialogsReducer = (state:DialogDataType,action:ActionsTypesDialogs)=>{
+
+// addMessageACActionType | updateAddMessageACActionType
+
+
+const initialState:DialogDataType ={
+    newMessageText: '',
+    dialogs: [
+    {id: 1, name: 'Hleb'},
+    {id: 2, name: 'Yuriy'},
+    {id: 3, name: 'Alici'},
+    {id: 4, name: 'Hyper'},
+    {id: 5, name: 'Robinson'},
+],
+    messages: [
+    {id: 1, message: 'Hello my friend'},
+    {id: 2, message: 'Welcome to Sayanara social network'},
+    // {id: 3, message: 'One Love'}
+]
+}
+
+export const dialogsReducer = (state:DialogDataType =initialState,action:ActionsTypesDialogs)=>{
 switch (action.type){
     case 'ADD-MESSAGE':
         const newMessage = {
@@ -23,6 +43,8 @@ switch (action.type){
 }
 }
 
+export type addMessageACActionType = ReturnType<typeof addMessageAC>
+export type updateAddMessageACActionType = ReturnType<typeof updateAddMessageAC>
 
 export const addMessageAC = (valueMessage: string) => {
     return {

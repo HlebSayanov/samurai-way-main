@@ -1,5 +1,6 @@
 import {ActionsTypesProfiles, profilesReducer} from "./profilesReducer";
 import {ActionsTypesDialogs, dialogsReducer} from "./dialogsReducer";
+import {sidebarReducer} from "./sidebarReducer";
 
 export type MessageType = {
     id: number,
@@ -25,15 +26,11 @@ export type DialogDataType = {
     messages: MessageType[]
 }
 export type Sidebar = {}
-
-
 export type RootStateType = {
     postPage: PostDataType,
     dialogPage: DialogDataType,
     sidebar: Sidebar
 }
-
-
 export type StoreType = {
     _state: RootStateType
     _renderCallback: () => void
@@ -43,7 +40,6 @@ export type StoreType = {
     getState: () => RootStateType
     dispatch: (action: ActionsTypesProfiles | ActionsTypesDialogs) => void
 }
-export type ActionTypes = ActionsTypesDialogs | ActionsTypesProfiles
 
 export const store: StoreType = {
     _state: {
@@ -85,6 +81,7 @@ export const store: StoreType = {
     dispatch(action) {
          profilesReducer(this._state.postPage, action)
         dialogsReducer(this._state.dialogPage, action)
+        sidebarReducer(this.subscriber,action)
         this._renderCallback()
     }
 

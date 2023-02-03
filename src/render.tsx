@@ -7,14 +7,17 @@ import {BrowserRouter} from "react-router-dom";
 
 
 
+
 export const renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
-            <App
-                store={store}
-                 // addPost={store.addPostBtn.bind(store._state)}
-                 // updateAddPost={store.updateAddPost.bind(store._state)}
-            />
+
+               <App store={store}
+                   // addPost={store.addPostBtn.bind(store._state)}
+                   // updateAddPost={store.updateAddPost.bind(store._state)}
+               />
+
+
         </BrowserRouter>,
         document.getElementById('root')
     );

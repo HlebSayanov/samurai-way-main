@@ -1,13 +1,23 @@
 import {PostDataType} from "./state";
 import {addMessageAC, updateAddMessageAC} from "./dialogsReducer";
 
-export type ActionsTypesProfiles =
-    ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
+
+export type ActionsTypesProfiles = ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
     | ReturnType<typeof updateAddMessageAC>
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateAddPostAC>
 
-export const profilesReducer = (state: PostDataType, action: ActionsTypesProfiles) => {
+// addPostACActionType| updateAddPostACActionType
+
+const initialState:PostDataType ={
+    newPostText: '',
+    posts: [
+        {id: 1, message: 'Hello my friend. Haw are you?', likeCount: 12},
+        {id: 2, message: 'When I returned home ?', likeCount: 12},
+        {id: 3, message: 'When I returned home ?', likeCount: 12}
+    ]
+}
+export const profilesReducer = (state: PostDataType=initialState, action: ActionsTypesProfiles) => {
 
     switch (action.type) {
         case 'ADD-POST':
@@ -26,6 +36,9 @@ export const profilesReducer = (state: PostDataType, action: ActionsTypesProfile
     }
 
 }
+
+export type addPostACActionType = ReturnType<typeof addPostAC>
+export type updateAddPostACActionType = ReturnType<typeof updateAddPostAC>
 
 export const addPostAC = (valuePost: string) => {
     return {
