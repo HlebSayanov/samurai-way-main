@@ -3,14 +3,17 @@ import classes from "./Dialogs.module.css";
 import {Dialog} from "./Dialog/Dialog";
 import {Messages} from "./Messages/Messages";
 import {
-    DialogDataType
+    DialogDataType, DialogType, MessageType
 
 } from "../../redux/state";
 import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogsReducer";
 
 type DialogsType = {
-    dialogPage: DialogDataType // state
-    dispatchDialogPage:(action:ActionsTypesDialogs)=>void
+    dialogItems: DialogType[]
+    messageItems: MessageType[]
+    NewMessage: string
+    addMessageTextArea: (value: string) => void
+    AddMessageOnClick: (value: string) => void
 
 }
 
@@ -18,16 +21,17 @@ type DialogsType = {
 export const Dialogs = (props: DialogsType) => {
 
 
-    let dialogItems = props.dialogPage.dialogs.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array
-    let messageItems = props.dialogPage.messages.map(el => <Messages text={el.message} id={el.id}/> //  messgae array data
-    )
-let message = props.dialogPage.newMessageText
+    let dialogItems = props.dialogItems.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array
+    let messageItems = props.messageItems.map(el => <Messages text={el.message} id={el.id}/>)
+    let message = props.NewMessage
+
     const addMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatchDialogPage(updateAddMessageAC(event.currentTarget.value))
+        let MessageValue = event.currentTarget.value
+        props.addMessageTextArea(MessageValue)
     }
 
     const OnClickHandlerAddMessage = () => {
-        props.dispatchDialogPage(addMessageAC(message))
+       props.AddMessageOnClick(message)
     }
     return (
         <div className={classes.dialogs}>
@@ -39,14 +43,11 @@ let message = props.dialogPage.newMessageText
             </div>
 
 
-
-
             <div className={classes.messages}>
 
                 {messageItems}
 
             </div>
-
 
 
         </div>

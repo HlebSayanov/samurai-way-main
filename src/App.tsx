@@ -9,6 +9,7 @@ import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {StoreType} from "./redux/state";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
 type AppType = {
@@ -17,7 +18,7 @@ type AppType = {
 }
 
 const App = (props: AppType) => {
-    const state = props.store.getState()
+
 
     return (
 
@@ -29,7 +30,7 @@ const App = (props: AppType) => {
                    store={props.store}
                     dispatch={props.store.dispatch.bind(props.store)}
                 />}/>
-                <Route path={'/dialogs'} render={() => <Dialogs dialogPage={state.dialogPage}
+                <Route path={'/dialogs'} render={() => <DialogsContainer store={props.store}
                                                                 dispatchDialogPage={props.store.dispatch.bind(props.store)}/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>

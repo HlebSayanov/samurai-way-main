@@ -23,16 +23,15 @@ export type MyPostsContaineType = {
 export const MyPostsContainer = (props: MyPostsContaineType) => {
 
 
-    const posts= props.store.getState().postPage.posts
-    const newPostText = props.store.getState().postPage.newPostText
+    const posts= props.store.getState().postPage.posts           // render posts
+    const newPostText = props.store.getState().postPage.newPostText     //  наши новые сообщение
 
     // / const textARef = React.createRef<HTMLTextAreaElement>()   // input(textaree) enter for keys
 
     const OnClickAddText = (value:string) => {
-
-        props.dispatch(addPostAC(value))
+        props.dispatch(addPostAC(value))                // через пропсы принимаем с myPost
         }
-       const onChangeHandlerAddText = (value:string) => {
+       const onChangeHandlerAddText = (value:string) => {               //  аналогично
         props.dispatch(updateAddPostAC(value))
        }
 

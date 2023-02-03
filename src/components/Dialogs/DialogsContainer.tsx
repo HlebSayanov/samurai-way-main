@@ -1,16 +1,11 @@
 import React, {ChangeEvent} from 'react';
-import classes from "./Dialogs.module.css";
-import {Dialog} from "./Dialog/Dialog";
-import {Messages} from "./Messages/Messages";
-import {
-    DialogDataType
-
-} from "../../redux/state";
+import {StoreType} from "../../redux/state";
 import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogsReducer";
+import {Dialogs} from "./Dialogs";
 
 type DialogsType = {
-    dialogPage: DialogDataType // state
-    dispatchDialogPage:(action:ActionsTypesDialogs)=>void
+    store: StoreType // state
+    dispatchDialogPage: (action: ActionsTypesDialogs) => void
 
 }
 
@@ -18,38 +13,27 @@ type DialogsType = {
 export const DialogsContainer = (props: DialogsType) => {
 
 
-    let dialogItems = props.dialogPage.dialogs.map(el => <Dialog name={el.name} id={el.id}/>) // dialog page array
-    let messageItems = props.dialogPage.messages.map(el => <Messages text={el.message} id={el.id}/> //  messgae array data
-    )
-let message = props.dialogPage.newMessageText
-    const addMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        props.dispatchDialogPage(updateAddMessageAC(event.currentTarget.value))
+    let dialogItems = props.store.getState().dialogPage.dialogs
+    let messageItems = props.store.getState().dialogPage.messages
+    let Newmessage = props.store.getState().dialogPage.newMessageText
+
+    const addMessageTextArea = (value: string) => {
+        props.dispatchDialogPage(updateAddMessageAC(value))
     }
 
-    const OnClickHandlerAddMessage = () => {
-        props.dispatchDialogPage(addMessageAC(message))
+    const AddMessageOnClick = (value:string) => {
+        props.dispatchDialogPage(addMessageAC(value))
     }
     return (
-        <div className={classes.dialogs}>
-            <div className={classes.dialogsItems}>
-                {dialogItems}
-                <textarea onChange={addMessage} value={message}></textarea>
+        <>
+     <Dialogs dialogItems={dialogItems}
+              messageItems={messageItems}
+              NewMessage={Newmessage}
+              addMessageTextArea={addMessageTextArea}
+              AddMessageOnClick={AddMessageOnClick}
 
-                <button onClick={OnClickHandlerAddMessage}>add message</button>
-            </div>
-
-
-
-
-            <div className={classes.messages}>
-
-                {messageItems}
-
-            </div>
-
-
-
-        </div>
+     />
+        </>
     );
 };
 

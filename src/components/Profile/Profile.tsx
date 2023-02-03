@@ -15,7 +15,7 @@ export type ProfileType = {
     dispatch: (action: ActionsTypesProfiles) => void
     store: StoreType
 }
-
+// Создали контейнер для поста , что бы только у него была логига и связь со сторем
 
 export const Profile = (props: ProfileType) => {
 
