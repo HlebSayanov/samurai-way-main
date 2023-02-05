@@ -1,6 +1,6 @@
-import {ActionsTypesProfiles, profilesReducer} from "./profilesReducer";
-import {ActionsTypesDialogs, dialogsReducer} from "./dialogsReducer";
-import {sidebarReducer} from "./sidebarReducer";
+import {ActionsTypesProfiles, profilesReducer} from "./profiles-reducer";
+import {ActionsTypesDialogs, dialogsReducer} from "./dialogs-reducer";
+import {sidebarReducer} from "./sidebar-reducer";
 
 export type MessageType = {
     id: number,
@@ -22,7 +22,7 @@ export type PostDataType = {
 }
 export type DialogDataType = {
     newMessageText: string
-    dialogs: DialogType[],
+    dialogsALl: DialogType[],
     messages: MessageType[]
 }
 export type Sidebar = {}
@@ -39,7 +39,7 @@ export type StoreType = {
     _renderCallback: () => void
     // addPostBtn: (valuePost: string) => void
     // updateAddPost: (valueEvent: string) => void // до диспатча
-    subscriber: (callbackRender: () => void) => void
+    subscribe: (callbackRender: () => void) => void
     getState: () => RootStateType
     dispatch: (action: ActionTypeforDispatch) => void
 }
@@ -56,7 +56,7 @@ export const store: StoreType = {
         },
         dialogPage: {
             newMessageText: '',
-            dialogs: [
+            dialogsALl: [
                 {id: 1, name: 'Hleb'},
                 {id: 2, name: 'Yuriy'},
                 {id: 3, name: 'Alici'},
@@ -75,7 +75,7 @@ export const store: StoreType = {
         console.log('this is state')
     },
 
-    subscriber(callbackRender: () => void) {
+    subscribe(callbackRender: () => void) {
         this._renderCallback = callbackRender
     },
     getState() {
@@ -84,7 +84,7 @@ export const store: StoreType = {
     dispatch(action) {
          profilesReducer(this._state.postPage, action)
         dialogsReducer(this._state.dialogPage, action)
-        sidebarReducer(this.subscriber,action)
+        sidebarReducer(this.subscribe,action)
         this._renderCallback()
     }
 

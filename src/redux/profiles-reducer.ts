@@ -1,5 +1,5 @@
 import {PostDataType} from "./state";
-import {addMessageAC, updateAddMessageAC} from "./dialogsReducer";
+import {addMessageAC, updateAddMessageAC} from "./dialogs-reducer";
 
 
 export type ActionsTypesProfiles = ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
@@ -26,11 +26,13 @@ export const profilesReducer = (state: PostDataType=initialState, action: Action
                 message: action.valuePost,
                 likeCount: 0
             }
-            state.posts.push(newPost)
-            state.newPostText = ''
-            return state
+            let copyState = {...state}
+            copyState.posts.push(newPost)
+            copyState.newPostText = ''
+            return copyState
         case "UPDATE-ADD-POST":
-            return state.newPostText = action.valueEvent
+            console.log(action)
+            return  {...state, newPostText: action.valueEvent}
         default:
             return state
     }

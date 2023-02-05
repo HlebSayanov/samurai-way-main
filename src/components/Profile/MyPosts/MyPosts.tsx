@@ -2,7 +2,7 @@ import React, {ChangeEvent, useState} from "react";
 import classes from "./MyPosts.module.css";
 import {Posts} from "./Post/Posts";
 import {PostDataType, PostType} from "../../../redux/state";
-import {ActionsTypesProfiles, addPostAC, updateAddPostAC} from "../../../redux/profilesReducer";
+import {ActionsTypesProfiles, addPostAC, updateAddPostAC} from "../../../redux/profiles-reducer";
 
 
 
@@ -23,7 +23,7 @@ export type MyPostsType = {
 
 
 export const MyPosts = (props: MyPostsType) => {
-
+    console.log(props.posts, " POSTS")
 
     const postItem = props.posts.map(el => <Posts userMessage={el.message}/>)
 
@@ -37,7 +37,6 @@ export const MyPosts = (props: MyPostsType) => {
             let valueTextArea = e.currentTarget.value
            props.onChangeHandlerAddText(valueTextArea)
        }
-
 
     return (
         <>

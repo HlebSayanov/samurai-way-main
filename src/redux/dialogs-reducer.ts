@@ -1,5 +1,5 @@
 import {DialogDataType} from "./state";
-import {addPostAC, updateAddPostAC} from "./profilesReducer";
+import {addPostAC, updateAddPostAC} from "./profiles-reducer";
 
 export type ActionsTypesDialogs =  ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
     | ReturnType<typeof updateAddMessageAC>
@@ -12,7 +12,7 @@ export type ActionsTypesDialogs =  ReturnType<typeof addMessageAC>// друга�
 
 const initialState:DialogDataType ={
     newMessageText: '',
-    dialogs: [
+    dialogsALl: [
     {id: 1, name: 'Hleb'},
     {id: 2, name: 'Yuriy'},
     {id: 3, name: 'Alici'},
@@ -33,11 +33,12 @@ switch (action.type){
             id: state.messages.length + 1,
             message: action.valueMessage
         }
-        state.messages.push(newMessage)
-        state.newMessageText=''
-        return
+        let copyState = {...state}
+        copyState.messages.push(newMessage)
+        copyState.newMessageText=''
+        return copyState
     case 'UPDATE-ADD-MESSAGE':
-        return state.newMessageText = action.valueEvent
+        return{...state,newMessageText: action.valueEvent}
     default:
         return state
 }

@@ -1,7 +1,8 @@
 import React, {ChangeEvent} from 'react';
 import {StoreType} from "../../redux/state";
-import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogsReducer";
+import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogs-reducer";
 import {Dialogs} from "./Dialogs";
+import StoreContext from '../../storeContext';
 
 type DialogsType = {
     store: StoreType // state
@@ -10,29 +11,39 @@ type DialogsType = {
 }
 
 
-export const DialogsContainer = (props: DialogsType) => {
+export const DialogsContainer = () => {
 
 
-    let dialogItems = props.store.getState().dialogPage.dialogs
-    let messageItems = props.store.getState().dialogPage.messages
-    let Newmessage = props.store.getState().dialogPage.newMessageText
 
-    const addMessageTextArea = (value: string) => {
-        props.dispatchDialogPage(updateAddMessageAC(value))
-    }
-
-    const AddMessageOnClick = (value:string) => {
-        props.dispatchDialogPage(addMessageAC(value))
-    }
     return (
         <>
-     <Dialogs dialogItems={dialogItems}
-              messageItems={messageItems}
-              NewMessage={Newmessage}
-              addMessageTextArea={addMessageTextArea}
-              AddMessageOnClick={AddMessageOnClick}
+            <StoreContext.Consumer>
+                {
+                    (store)=>{
+                        let dialogItems = store.getState().dialogs.dialogsALl
+                        let messageItems = store.getState().dialogs.messages
+                        let Newmessage = store.getState().dialogs.newMessageText
 
-     />
+                        const addMessageTextArea = (value: string) => {
+                            store.dispatch(updateAddMessageAC(value))
+                        }
+
+                        const AddMessageOnClick = (value:string) => {
+                            store.dispatch(addMessageAC(value))
+                        }
+                        return <Dialogs dialogItems={dialogItems}
+                                        messageItems={messageItems}
+                                        NewMessage={Newmessage}
+                                        addMessageTextArea={addMessageTextArea}
+                                        AddMessageOnClick={AddMessageOnClick}
+
+                        />
+                    }
+                }
+
+
+            </StoreContext.Consumer>
+
         </>
     );
 };

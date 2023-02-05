@@ -6,7 +6,7 @@ import {
     DialogDataType, DialogType, MessageType
 
 } from "../../redux/state";
-import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogsReducer";
+import {ActionsTypesDialogs, addMessageAC, updateAddMessageAC} from "../../redux/dialogs-reducer";
 
 type DialogsType = {
     dialogItems: DialogType[]

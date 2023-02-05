@@ -1,49 +1,56 @@
-import React, {ChangeEvent, useState} from "react";
-import classes from "./MyPosts.module.css";
-import {Posts} from "./Post/Posts";
-import {PostType, StoreType} from "../../../redux/state";
-import {ActionsTypesProfiles, addPostAC, updateAddPostAC} from "../../../redux/profilesReducer";
+import React from "react";
+
+import { StoreType} from "../../../redux/state";
+import {ActionsTypesProfiles, addPostAC, updateAddPostAC} from "../../../redux/profiles-reducer";
 import {MyPosts} from "./MyPosts";
+import StoreContext from "../../../storeContext";
+import {ReduxStoreType} from "../../../redux/store-redux";
 
 
 
-
-export type MyPostsContaineType = {
-    store:StoreType
-
-
-    // postPage:PostType[]
-    // // addPost: (valuePost: string) => void
-    // newPostText: string
-    // // updateAddPost: (valueEvent: string) => void
-     dispatch:(action:ActionsTypesProfiles)=>void
-}
+// export type MyPostsContainerType = {
+//     store: ReduxStoreType
+//
+//     dispatch: (action: ActionsTypesProfiles) => void
+// }
 
 
-export const MyPostsContainer = (props: MyPostsContaineType) => {
-
-
-    const posts= props.store.getState().postPage.posts           // render posts
-    const newPostText = props.store.getState().postPage.newPostText     //  наши новые сообщение
-
-    // / const textARef = React.createRef<HTMLTextAreaElement>()   // input(textaree) enter for keys
-
-    const OnClickAddText = (value:string) => {
-        props.dispatch(addPostAC(value))                // через пропсы принимаем с myPost
-        }
-       const onChangeHandlerAddText = (value:string) => {               //  аналогично
-        props.dispatch(updateAddPostAC(value))
-       }
+export const MyPostsContainer = () => {
 
 
     return (
         <>
+            <StoreContext.Consumer>
+                {
+                    (store) => {
 
-            <MyPosts posts={posts}
-                     newPostText={newPostText}
-                     onChangeHandlerAddText={onChangeHandlerAddText}
-                     OnClickAddText={OnClickAddText}
-            />
+                        console.log(store.getState(), 'dfs')
+
+                        const posts = store.getState().profiles.posts
+
+                        // props.store.getState().postPage.posts           // render posts
+                        const newPostText = store.getState().profiles.newPostText     //  наши новые сообщение
+
+                        // / const textARef = React.createRef<HTMLTextAreaElement>()   // input(textaree) enter for keys
+
+                        const OnClickAddText = (value: string) => {
+                            store.dispatch(addPostAC(value))                // через пропсы принимаем с myPost
+                        }
+                        const onChangeHandlerAddText = (value: string) => {               //  аналогично
+                            store.dispatch(updateAddPostAC(value))
+                            console.log(value)
+                        }
+
+                        return <MyPosts posts={posts}
+                                        newPostText={newPostText}
+                                        onChangeHandlerAddText={onChangeHandlerAddText}
+                                        OnClickAddText={OnClickAddText}
+                        />
+                    }
+                }
+
+
+            </StoreContext.Consumer>
 
 
         </>
