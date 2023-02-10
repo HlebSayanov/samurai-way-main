@@ -21,9 +21,10 @@ export type PostDataType = {
 
 }
 export type DialogDataType = {
-    newMessageText: string
+
     dialogsALl: DialogType[],
     messages: MessageType[]
+    newMessageText: string
 }
 export type Sidebar = {}
 export type RootStateType = {
@@ -83,7 +84,7 @@ export const store: StoreType = {
     },
     dispatch(action) {
          profilesReducer(this._state.postPage, action)
-        dialogsReducer(this._state.dialogPage, action)
+         // dialogsReducer(this._state.dialogPage, action)
         sidebarReducer(this.subscribe,action)
         this._renderCallback()
     }

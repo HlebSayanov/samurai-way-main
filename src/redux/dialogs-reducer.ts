@@ -1,32 +1,43 @@
-import {DialogDataType} from "./state";
+
 import {addPostAC, updateAddPostAC} from "./profiles-reducer";
 
 export type ActionsTypesDialogs =  ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
     | ReturnType<typeof updateAddMessageAC>
-    | ReturnType<typeof addPostAC>
-    | ReturnType<typeof updateAddPostAC>
+
 
 
 // addMessageACActionType | updateAddMessageACActionType
+export type MessageType = {
+    id: number,
+    message: string
+}
+export type DialogType = {
+    id: number,
+    name: string
+}
+export type newMessageTextType ={
+    newMessageText:string
+}
 
+const initialState ={
 
-const initialState:DialogDataType ={
-    newMessageText: '',
-    dialogsALl: [
+    dialogs: [
     {id: 1, name: 'Hleb'},
     {id: 2, name: 'Yuriy'},
     {id: 3, name: 'Alici'},
     {id: 4, name: 'Hyper'},
     {id: 5, name: 'Robinson'},
-],
+] as DialogType[],
     messages: [
     {id: 1, message: 'Hello my friend'},
     {id: 2, message: 'Welcome to Sayanara social network'},
-    // {id: 3, message: 'One Love'}
-]
-}
 
-export const dialogsReducer = (state:DialogDataType =initialState,action:ActionsTypesDialogs)=>{
+] as MessageType[] ,
+    newMessageText: '' ,
+}
+type initialStateType = typeof initialState
+
+export const dialogsReducer = (state:initialStateType =initialState,action:ActionsTypesDialogs):initialStateType=>{
 switch (action.type){
     case 'ADD-MESSAGE':
         const newMessage = {

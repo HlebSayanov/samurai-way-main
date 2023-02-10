@@ -1,4 +1,4 @@
-import {PostDataType} from "./state";
+
 import {addMessageAC, updateAddMessageAC} from "./dialogs-reducer";
 
 
@@ -8,7 +8,16 @@ export type ActionsTypesProfiles = ReturnType<typeof addMessageAC>// друга�
     | ReturnType<typeof updateAddPostAC>
 
 // addPostACActionType| updateAddPostACActionType
+export type PostType = {
+    id: number,
+    message: string,
+    likeCount: number
+}
+export type PostDataType = {
+    newPostText: string
+    posts: PostType[]
 
+}
 const initialState:PostDataType ={
     newPostText: '',
     posts: [
@@ -17,7 +26,7 @@ const initialState:PostDataType ={
         {id: 3, message: 'When I returned home ?', likeCount: 12}
     ]
 }
-export const profilesReducer = (state: PostDataType=initialState, action: ActionsTypesProfiles) => {
+export const profilesReducer = (state: PostDataType=initialState, action: ActionsTypesProfiles):PostDataType => {
 
     switch (action.type) {
         case 'ADD-POST':
