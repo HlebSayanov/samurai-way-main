@@ -35,8 +35,8 @@ export const profilesReducer = (state: PostDataType=initialState, action: Action
                 message: action.valuePost,
                 likeCount: 0
             }
-            let copyState = {...state}
-            copyState.posts.push(newPost)
+            let copyState = {...state, posts: [...state.posts, newPost]}
+            // copyState.posts.push(newPost)
             copyState.newPostText = ''
             return copyState
         case "UPDATE-ADD-POST":

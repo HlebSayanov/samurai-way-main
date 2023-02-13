@@ -45,7 +45,8 @@ switch (action.type){
             message: action.valueMessage
         }
         let copyState = {...state}
-        copyState.messages.push(newMessage)
+        copyState.messages = [...state.messages]
+            copyState.messages.push(newMessage)
         copyState.newMessageText=''
         return copyState
     case 'UPDATE-ADD-MESSAGE':

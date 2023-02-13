@@ -12,7 +12,7 @@ import { Provider } from 'react-redux';
 
 
 
-export const renderTree = () => {
+// export const renderTree = () => {
     ReactDOM.render(
         <BrowserRouter>
             <Provider store={storeRedux}>
@@ -21,11 +21,11 @@ export const renderTree = () => {
         </BrowserRouter>,
         document.getElementById('root')
     );
-}
+// }
 
 
-renderTree()
-storeRedux.subscribe(()=>{
-    renderTree()
-})
+// renderTree()
+// storeRedux.subscribe(()=>{
+//     renderTree()
+// })
 
