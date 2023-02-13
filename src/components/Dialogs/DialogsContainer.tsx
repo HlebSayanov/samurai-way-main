@@ -11,42 +11,7 @@ import {AppStateType} from "../../redux/store-redux";
 import {Dispatch} from "redux";
 
 
-// export const DialogsContainer12 = () => {
-//
-//
-//
-//     return (
-//         <>
-//             <StoreContext.Consumer>
-//                 {
-//                     (store)=>{
-//                         let dialogItems = store.getState().dialogs.dialogsALl
-//                         let messageItems = store.getState().dialogs.messages
-//                         let Newmessage = store.getState().dialogs.newMessageText
-//
-//                         const addMessageTextArea = (value: string) => {
-//                             store.dispatch(updateAddMessageAC(value))
-//                         }
-//
-//                         const AddMessageOnClick = (value:string) => {
-//                             store.dispatch(addMessageAC(value))
-//                         }
-//                         return <Dialogs dialogItems={dialogItems}
-//                                         messageItems={messageItems}
-//                                         NewMessage={Newmessage}
-//                                         addMessageTextArea={addMessageTextArea}
-//                                         AddMessageOnClick={AddMessageOnClick}
-//
-//                         />
-//                     }
-//                 }
-//
-//
-//             </StoreContext.Consumer>
-//
-//         </>
-//     );
-// };
+
 
 export type mapStateToPropsType = {
     dialogItems: DialogType[]

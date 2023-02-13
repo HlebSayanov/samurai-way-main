@@ -35,10 +35,11 @@ export const profilesReducer = (state: PostDataType=initialState, action: Action
                 message: action.valuePost,
                 likeCount: 0
             }
-            let copyState = {...state, posts: [...state.posts, newPost]}
-            // copyState.posts.push(newPost)
-            copyState.newPostText = ''
-            return copyState
+            return  {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText : ''
+            }
         case "UPDATE-ADD-POST":
             console.log(action)
             return  {...state, newPostText: action.valueEvent}

@@ -44,11 +44,11 @@ switch (action.type){
             id: state.messages.length + 1,
             message: action.valueMessage
         }
-        let copyState = {...state}
-        copyState.messages = [...state.messages]
-            copyState.messages.push(newMessage)
-        copyState.newMessageText=''
-        return copyState
+        return {
+            ...state,
+            messages: [...state.messages,newMessage ],
+            newMessageText:''
+        }
     case 'UPDATE-ADD-MESSAGE':
         return{...state,newMessageText: action.valueEvent}
     default:
