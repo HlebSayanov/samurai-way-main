@@ -1,8 +1,8 @@
 
 import {addPostAC, updateAddPostAC} from "./profiles-reducer";
 
-export type ActionsTypesDialogs =  ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
-    | ReturnType<typeof updateAddMessageAC>
+export type ActionsTypesDialogs =  addMessageACActionType// другая вариация типизаций экшенов
+    | updateAddMessageACActionType
 
 
 
@@ -14,9 +14,6 @@ export type MessageType = {
 export type DialogType = {
     id: number,
     name: string
-}
-export type newMessageTextType ={
-    newMessageText:string
 }
 
 const initialState ={
