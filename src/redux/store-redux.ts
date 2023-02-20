@@ -10,7 +10,7 @@ const rootReducers = combineReducers({
     profiles: profilesReducer,
     dialogs: dialogsReducer,
     sidebar: sidebarReducer,
-    users:usersReducer
+    items:usersReducer
 })
 
 export const storeRedux = createStore(rootReducers)

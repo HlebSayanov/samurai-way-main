@@ -3,12 +3,12 @@ import {connect} from "react-redux";
 import {Users} from "./Users";
 import {AppStateType} from "../../redux/store-redux";
 import {Dispatch} from "redux";
-import {fallowOrUnfollowAC, setUsersAC, UsersTest, UsersType} from "../../redux/users-reducer";
+import {fallowOrUnfollowAC, setUsersAC, UsersTest, ItmesType} from "../../redux/users-reducer";
 
 
 
 type mapStateToPropsType = {
-    usersPage:UsersType[]
+    usersPage:ItmesType[]
 }
 type mapDispatchToPropsType = {
     checkedFallow:(usersId: number, isDone: boolean)=>void
@@ -20,7 +20,7 @@ export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state:AppStateType):mapStateToPropsType=>{
     return{
-        usersPage:state.users.users
+        usersPage:state.items.items
     }
 }
 
