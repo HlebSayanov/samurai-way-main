@@ -15,48 +15,18 @@ export type UsersType = {
     public: string
     location: LocationType
 }
-
-const initialState = {
-
-    users: [
-        {
-            id: 1,
-            avatar: 'https://cdn.dribbble.com/users/1230354/screenshots/4923869/rickandmorty.png',
-            fallow: true,
-            fullName: 'Syanara',
-            public: 'hello world',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 2,
-            avatar: 'https://cdn.dribbble.com/users/1230354/screenshots/4923869/rickandmorty.png',
-            fallow: true,
-            fullName: 'qwqewrty',
-            public: 'hehehehe',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 3,
-            avatar: 'https://cdn.dribbble.com/users/1230354/screenshots/4923869/rickandmorty.png',
-            fallow: false,
-            fullName: 'kola',
-            public: 'xzxzzxzxzx',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-        {
-            id: 4,
-            avatar: 'https://cdn.dribbble.com/users/1230354/screenshots/4923869/rickandmorty.png',
-            fallow: false,
-            fullName: 'Yura',
-            public: 'xzxzxzxxzx',
-            location: {city: 'Minsk', country: 'Belarus'}
-        },
-    ] as UsersType[]
+export type UsersTest = {
+    users:UsersType[]
 }
 
-type initialStateType = typeof initialState
+const initialState = {
+users:[] as UsersType[]
 
-export const usersReducer = (state: initialStateType = initialState, action: ActionsTypes): initialStateType => {
+}
+
+type InitialStateType = typeof initialState
+
+export const usersReducer = (state:InitialStateType=initialState, action: ActionsTypes):InitialStateType=> {
     switch (action.type) {
         case "FOLLOW-UNFOLLOW":
             return {
@@ -81,7 +51,7 @@ export const fallowOrUnfollowAC = (usersId: number, isDone: boolean) => {
     } as const
 }
 
-export const setUsersAC = (newUsers: any) => {
+export const setUsersAC = (newUsers:UsersType[] ) => {
     return {
         type: "SET-USERS",
         payload: {newUsers}

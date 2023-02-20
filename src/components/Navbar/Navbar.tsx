@@ -3,7 +3,7 @@ import classes from "./Navbar.module.css";
 import {NavLink} from "react-router-dom";
 
 export const Navbar = () => {
-    // @ts-ignore
+
     return (
         <>
             <nav className={classes.sidebar}>

@@ -19,7 +19,7 @@ export type mapStateToPropsType = {
     NewMessage: string
 }
 
-export type mapDispatchToPropsType = {
+ type mapDispatchToPropsType = {
     addMessageTextArea: (value: string) => void
     AddMessageOnClick: (value: string) => void
 }
