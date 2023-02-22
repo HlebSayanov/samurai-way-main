@@ -14,6 +14,7 @@ type mapDispatchToPropsType = {
     checkedFallow:(usersId: number, isDone: boolean)=>void
     setUsers:(newUsers: any) =>void
 }
+
 export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
 
 
