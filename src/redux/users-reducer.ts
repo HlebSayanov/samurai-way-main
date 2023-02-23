@@ -1,7 +1,6 @@
 import {Debugger} from "inspector";
 
 
-export type ActionsTypes = fallowOrUnfollowActionType | setUsersActionType
 
 export type PhotosType = {
     small: null | string
@@ -19,9 +18,14 @@ export type ItmesType = {
 export type UsersTest = {
     users: ItmesType[]
 }
+export type ActionsTypes = fallowOrUnfollowActionType
+    | setUsersActionType |setNumberPageActionType | setTotalCountsActionType
 
 const initialState = {
-    items: [] as ItmesType[]
+    items: [] as ItmesType[],
+    pageSizeUsers:4,
+    totalUsers:0,
+    numberPage:1
 
 }
 
@@ -36,7 +40,12 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
                     : el)
             }
         case "SET-USERS":
-            return {...state, items: [...state.items, ...action.payload.newUsers]}
+            return {...state, items: action.payload.newUsers}
+
+        case "SET-PAGE":
+            return {...state, numberPage: action.payload.newPage}
+        case "SET-TOTAL-COUNT":
+            return {...state, totalUsers: action.payload.count}
         default:
             return state
     }
@@ -44,6 +53,8 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
 
 export type  fallowOrUnfollowActionType = ReturnType<typeof fallowOrUnfollowAC>
 export type  setUsersActionType = ReturnType<typeof setUsersAC>
+export type  setNumberPageActionType = ReturnType<typeof setNumberPageAC>
+export type  setTotalCountsActionType = ReturnType<typeof setTotalCountsAC>
 
 export const fallowOrUnfollowAC = (usersId: number, isDone: boolean) => {
     return {
@@ -58,4 +69,18 @@ export const setUsersAC = (newUsers: ItmesType[]) => {
         payload: {newUsers}
     } as const
 }
+export const setNumberPageAC = (newPage: number) => {
+    return {
+        type: "SET-PAGE",
+        payload: {newPage}
+    } as const
+}
+
+export const setTotalCountsAC = (count: number) => {
+    return {
+        type: "SET-TOTAL-COUNT",
+        payload: {count}
+    } as const
+}
+
 

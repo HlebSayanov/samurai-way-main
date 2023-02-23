@@ -7,18 +7,39 @@ import {ItmesType} from "../../redux/users-reducer";
 
 
  export  class Users extends React.Component<UsersTypeProps,ItmesType[]>   {
-    constructor(props:UsersTypeProps) {
-        super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
 
-            this.props.setUsers(response.data.items)})
+componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberPage}&count=${this.props.pageSizeUsers}`)
+        .then(response => {
+        this.props.setUsers(response.data.items)
+        this.props.setTotalUsers(response.data.totalCount > 100 ?54:0)
+        })
+
     }
 
+changePage=(number:number)=>{
+    this.props.setNumberPage(number)
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${number}&count=${this.props.pageSizeUsers}`).then(response => {
+        this.props.setUsers(response.data.items)})
+}
 
-    render(){
-        return (
+
+
+     render(){
+    let arrTotalPage = []
+
+       const pagesCount=Math.ceil(this.props.totalUsers/this.props.pageSizeUsers)
+
+         for(let i = 1; i<pagesCount; i++){
+             arrTotalPage.push(i)
+         }
+
+         return (
             <>
-
+                {arrTotalPage.map(el=>{
+                    return <span onClick={()=>this.changePage(el)}
+                        className={this.props.numberPage  === el? styles.numberPage :''}>{el}</span>
+                })}
                 {this.props.usersPage.map(el => {
                     const onClickHandler = () => {
                         this.props.checkedFallow(el.id, !el.followed)
