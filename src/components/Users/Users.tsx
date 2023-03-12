@@ -1,48 +1,38 @@
-import React from 'react';
+import React from "react";
+import styles from "./Users.module.css";
+import userPhoto from "../assets/images/rickAva.png";
 import {UsersTypeProps} from "./UsersContainer";
-import styles from './Users.module.css'
-import axios from "axios";
-import userPhoto from '../assets/images/rickAva.png'
 import {ItmesType} from "../../redux/users-reducer";
 
+type UserType = {
+    usersPage: ItmesType[]
+    totalUsers: number
+    pageSizeUsers: number
 
- export  class Users extends React.Component<UsersTypeProps,ItmesType[]>   {
+    numberPage: number
+    changePage: (number: number) => void
+    checkedFallow: (usersId: number, isDone: boolean) => void
 
-componentDidMount() {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberPage}&count=${this.props.pageSizeUsers}`)
-        .then(response => {
-        this.props.setUsers(response.data.items)
-        this.props.setTotalUsers(response.data.totalCount > 100 ?54:0)
-        })
-
-    }
-
-changePage=(number:number)=>{
-    this.props.setNumberPage(number)
-    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${number}&count=${this.props.pageSizeUsers}`).then(response => {
-        this.props.setUsers(response.data.items)})
 }
 
 
-
-     render(){
+export const Users = (props: UserType) => {
     let arrTotalPage = []
 
-       const pagesCount=Math.ceil(this.props.totalUsers/this.props.pageSizeUsers)
+    const pagesCount = Math.ceil(props.totalUsers / props.pageSizeUsers)
+    for (let i = 1; i < pagesCount; i++) {
+        arrTotalPage.push(i)
+    }
 
-         for(let i = 1; i<pagesCount; i++){
-             arrTotalPage.push(i)
-         }
-
-         return (
+        return (
             <>
-                {arrTotalPage.map(el=>{
-                    return <span onClick={()=>this.changePage(el)}
-                        className={this.props.numberPage  === el? styles.numberPage :''}>{el}</span>
+                {arrTotalPage.map(el => {
+                    return <span onClick={() => props.changePage(el)}
+                                 className={props.numberPage === el ? styles.numberPage : ''}>{el}</span>
                 })}
-                {this.props.usersPage.map(el => {
+                {props.usersPage.map(el => {
                     const onClickHandler = () => {
-                        this.props.checkedFallow(el.id, !el.followed)
+                        props.checkedFallow(el.id, !el.followed)
                         console.log(el.followed, el.id)
                     }
 
@@ -63,6 +53,6 @@ changePage=(number:number)=>{
 
 
         );
-    }
 
-};
+
+}

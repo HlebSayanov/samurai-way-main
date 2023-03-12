@@ -1,12 +1,11 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {Users} from "./Users";
+import {UsersComponentForAPI} from "./UsersComponentForAPI";
 import {AppStateType} from "../../redux/store-redux";
 import {Dispatch} from "redux";
 import {
     fallowOrUnfollowAC,
     setUsersAC,
-    UsersTest,
     ItmesType,
     setNumberPageAC,
     setTotalCountsAC
@@ -27,7 +26,6 @@ type mapDispatchToPropsType = {
     setNumberPage:(newPage: number) =>void
     setTotalUsers:(count: number) =>void
 }
-
 export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
 
 
@@ -62,4 +60,4 @@ const mapDispatchToProps = (dispacth:Dispatch):mapDispatchToPropsType => {
 
 
 
-export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(Users)
+export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersComponentForAPI)
