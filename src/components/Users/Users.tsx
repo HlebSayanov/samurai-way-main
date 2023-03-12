@@ -1,7 +1,6 @@
 import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../assets/images/rickAva.png";
-import {UsersTypeProps} from "./UsersContainer";
 import {ItmesType} from "../../redux/users-reducer";
 
 type UserType = {
