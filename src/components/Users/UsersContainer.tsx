@@ -4,11 +4,11 @@ import {UsersComponentForAPI} from "./UsersComponentForAPI";
 import {AppStateType} from "../../redux/store-redux";
 import {Dispatch} from "redux";
 import {
-    fallowOrUnfollowAC,
-    setUsersAC,
+    fallowOrUnfollow,
+    setUsers,
     ItmesType,
-    setNumberPageAC,
-    setTotalCountsAC, toggleIsFetchingAC
+    setNumberPage,
+    setTotalCounts, toggleIsFetching
 } from "../../redux/users-reducer";
 
 
@@ -22,10 +22,10 @@ type mapStateToPropsType = {
 
 }
 type mapDispatchToPropsType = {
-    checkedFallow:(usersId: number, isDone: boolean)=>void
+    fallowOrUnfollow:(usersId: number, isDone: boolean)=>void
     setUsers:(newUsers: any) =>void
     setNumberPage:(newPage: number) =>void
-    setTotalUsers:(count: number) =>void
+    setTotalCounts:(count: number) =>void
     toggleIsFetching:(isFetching:boolean)=>void
 }
 export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
@@ -43,27 +43,31 @@ const mapStateToProps = (state:AppStateType):mapStateToPropsType=>{
     }
 }
 
-const mapDispatchToProps = (dispacth:Dispatch):mapDispatchToPropsType => {
-  return{
-      checkedFallow:(usersId: number, isDone: boolean)=>{
-          dispacth(fallowOrUnfollowAC(usersId,isDone))
-      },
-      setUsers:(newUsers: ItmesType[]) =>{
-          dispacth(setUsersAC(newUsers))
-      },
-      setNumberPage:(newPage: number) =>{
-          dispacth(setNumberPageAC(newPage))
-      },
-      setTotalUsers:(count: number) => {
-          dispacth(setTotalCountsAC(count))
-      },
-      toggleIsFetching:(isFetching:boolean)=>{
-        dispacth(toggleIsFetchingAC(isFetching))
-      }
-         
-  }
-}
+// const mapDispatchToProps = (dispacth:Dispatch):mapDispatchToPropsType => {
+//   return{
+//       fallowOrUnfollow:(usersId: number, isDone: boolean)=>{
+//           dispacth(fallowOrUnfollow(usersId,isDone))
+//       },
+//       setUsers:(newUsers: ItmesType[]) =>{
+//           dispacth(setUsers(newUsers))
+//       },
+//       setNumberPage:(newPage: number) =>{
+//           dispacth(setNumberPage(newPage))
+//       },
+//       setTotalCounts:(count: number) => {
+//           dispacth(setTotalCounts(count))
+//       },
+//       toggleIsFetching:(isFetching:boolean)=>{
+//         dispacth(toggleIsFetching(isFetching))
+//       }
+//
+//   }
+// }
 
 
 
-export const UsersContainer = connect(mapStateToProps,mapDispatchToProps)(UsersComponentForAPI)
+export const UsersContainer = connect(
+    mapStateToProps,
+    {fallowOrUnfollow,setUsers,setNumberPage,setTotalCounts,toggleIsFetching}
+)
+(UsersComponentForAPI)

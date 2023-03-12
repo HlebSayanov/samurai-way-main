@@ -14,7 +14,7 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
-                this.props.setTotalUsers(response.data.totalCount > 100 ? 54 : 0)
+                this.props.setTotalCounts(response.data.totalCount > 100 ? 54 : 0)
             })
 
     }
@@ -40,7 +40,7 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
                     numberPage={this.props.numberPage}
                     changePage={this.changePage}
                     usersPage={this.props.usersPage}
-                    checkedFallow={this.props.checkedFallow}
+                    checkedFallow={this.props.fallowOrUnfollow}
                 />
             </>
         )
