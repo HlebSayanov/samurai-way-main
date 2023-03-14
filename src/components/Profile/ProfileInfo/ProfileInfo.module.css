@@ -27,3 +27,13 @@
     color: #1e1d1e;
 }
 
+.userBlock{
+    display: flex;
+
+}
+.avatar{
+    width: 200px;
+}
+.description{
+    margin-left: 100px;
+}

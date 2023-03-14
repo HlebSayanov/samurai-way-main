@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from "react-redux";
 import {UsersComponentForAPI} from "./UsersComponentForAPI";
 import {AppStateType} from "../../redux/store-redux";
-import {Dispatch} from "redux";
+
 import {
     fallowOrUnfollow,
     setUsers,

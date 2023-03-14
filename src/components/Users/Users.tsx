@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Users.module.css";
 import userPhoto from "../assets/images/rickAva.png";
 import {ItmesType} from "../../redux/users-reducer";
+import {NavLink} from "react-router-dom";
 
 type UserType = {
     usersPage: ItmesType[]
@@ -37,7 +38,9 @@ export const Users = (props: UserType) => {
 
                     return (
                         <div key={el.id}>
-                            <img src={el.photos === null ? el.photos : userPhoto} className={styles.avatar}/>
+                            <NavLink to={'/profile/' + el.id}>
+                                <img src={el.photos === null ? el.photos : userPhoto} className={styles.avatar}/>
+                            </NavLink>
                             <div>{el.followed ? <button onClick={onClickHandler}>Fallow</button> :
                                 <button onClick={onClickHandler}>Unfallow</button>}</div>
 

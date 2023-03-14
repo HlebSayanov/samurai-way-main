@@ -83,7 +83,7 @@ export const store: StoreType = {
         return this._state
     },
     dispatch(action) {
-         profilesReducer(this._state.postPage, action)
+         // profilesReducer(this._state.postPage, action)
          // dialogsReducer(this._state.dialogPage, action)
         sidebarReducer(this.subscribe,action)
         this._renderCallback()

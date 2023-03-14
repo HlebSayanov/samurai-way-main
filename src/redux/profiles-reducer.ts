@@ -1,13 +1,13 @@
 
-import {addMessageAC, updateAddMessageAC} from "./dialogs-reducer";
 
 
-export type ActionsTypesProfiles = ReturnType<typeof addMessageAC>// другая вариация типизаций экшенов
-    | ReturnType<typeof updateAddMessageAC>
+export type ActionsTypesProfiles =
+
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateAddPostAC>
+    | ReturnType<typeof setAddProfileUser>
 
-// addPostACActionType| updateAddPostACActionType
+
 export type PostType = {
     id: number,
     message: string,
@@ -16,17 +16,45 @@ export type PostType = {
 export type PostDataType = {
     newPostText: string
     posts: PostType[]
+    profileUser: ProfileUserType
 
 }
-const initialState:PostDataType ={
+type ContactsType = {
+    "facebook": string
+    "website": string
+    "vk": string
+    "twitter": string
+    "instagram": string
+    "youtube": string
+    "github": string
+    "mainLink": string
+}
+type PhotosType = {
+    "small": string
+    "large": string
+}
+
+export type ProfileUserType = {
+    "aboutMe": string
+    "contacts": ContactsType
+    "lookingForAJob": boolean,
+    "lookingForAJobDescription": string
+    "fullName": string,
+    "userId": number,
+    "photos": PhotosType
+}
+
+
+const initialState: PostDataType = {
     newPostText: '',
     posts: [
         {id: 1, message: 'Hello my friend. Haw are you?', likeCount: 12},
         {id: 2, message: 'When I returned home ?', likeCount: 12},
         {id: 3, message: 'When I returned home ?', likeCount: 12}
-    ]
+    ],
+    profileUser: {} as  ProfileUserType
 }
-export const profilesReducer = (state: PostDataType=initialState, action: ActionsTypesProfiles):PostDataType => {
+export const profilesReducer = (state: PostDataType = initialState, action: ActionsTypesProfiles): PostDataType => {
 
     switch (action.type) {
         case 'ADD-POST':
@@ -35,14 +63,15 @@ export const profilesReducer = (state: PostDataType=initialState, action: Action
                 message: action.valuePost,
                 likeCount: 0
             }
-            return  {
+            return {
                 ...state,
                 posts: [...state.posts, newPost],
-                newPostText : ''
+                newPostText: ''
             }
         case "UPDATE-ADD-POST":
-            console.log(action)
-            return  {...state, newPostText: action.valueEvent}
+            return {...state, newPostText: action.valueEvent}
+        case "SET-ADD-PROFILE-USER":
+            return {...state, profileUser: action.profileUser}
         default:
             return state
     }
@@ -55,12 +84,18 @@ export type updateAddPostACActionType = ReturnType<typeof updateAddPostAC>
 export const addPostAC = (valuePost: string) => {
     return {
         type: "ADD-POST",
-        valuePost: valuePost
+        valuePost
     } as const
 }               // вызывается Myposts
 export const updateAddPostAC = (valueEvent: string) => {
     return {
         type: "UPDATE-ADD-POST",
-        valueEvent: valueEvent
+        valueEvent
+    } as const
+}       //  аналогично
+export const setAddProfileUser = (profileUser: ProfileUserType) => {
+    return {
+        type: "SET-ADD-PROFILE-USER",
+        profileUser
     } as const
 }       //  аналогично
