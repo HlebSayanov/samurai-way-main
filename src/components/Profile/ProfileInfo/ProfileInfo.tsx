@@ -9,6 +9,7 @@ export const ProfileInfo = (props:{userProfile:ProfileUserType}) => {
     if(!props.userProfile.photos){
         return <Preloader/>
     }
+    debugger
     return (
         <>
 
@@ -24,6 +25,7 @@ export const ProfileInfo = (props:{userProfile:ProfileUserType}) => {
                 <div className={classes.description}>
                     {props.userProfile.aboutMe}
                    <p>{props.userProfile.fullName}</p>
+
 
                 </div>
             </div>
