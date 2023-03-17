@@ -9,7 +9,7 @@ export const ProfileInfo = (props:{userProfile:ProfileUserType}) => {
     if(!props.userProfile.photos){
         return <Preloader/>
     }
-    debugger
+
     return (
         <>
 

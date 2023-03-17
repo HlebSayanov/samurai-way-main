@@ -2,9 +2,20 @@
 
     grid-area: header;
 
+
     background-color: #fff8ed;
 }
 .header img {
     width: 50px;
     border-radius: 50%;
+
+
+}
+.auth {
+    color: #ff00ff;
+    border-bottom-style: none;
+    float: right;
+}
+.auth:hover{
+    color: #cb0c0c;
 }
