@@ -3,9 +3,6 @@ import classes from './Header.module.css'
 import {NavLink} from "react-router-dom";
 
 
-type HeaderType = {
-children?:React.ReactNode
-}
 
 export const Header = (props:{ isAuth: boolean | undefined, login:string | null}) => {
 

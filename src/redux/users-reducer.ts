@@ -32,6 +32,7 @@ type InitialStateType = typeof initialState
 export const usersReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "FOLLOW-UNFOLLOW":
+            console.log(action.payload.isDone)
             return {
                 ...state, items: state.items.map(el => el.id === action.payload.usersId
                     ? {...el, followed: action.payload.isDone}

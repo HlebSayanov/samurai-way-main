@@ -10,7 +10,9 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberPage}&count=${this.props.pageSizeUsers}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.numberPage}&count=${this.props.pageSizeUsers}`,{
+            withCredentials:true
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -22,7 +24,9 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
     changePage = (number: number) => {
         this.props.toggleIsFetching(true)
         this.props.setNumberPage(number)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${number}&count=${this.props.pageSizeUsers}`)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${number}&count=${this.props.pageSizeUsers}`,{
+            withCredentials:true
+        })
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
