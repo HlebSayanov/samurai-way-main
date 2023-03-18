@@ -6,17 +6,16 @@ import {AppStateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
 import {RouteComponentProps} from "react-router-dom";
 import {PropsTypeHeader} from "./Test";
+import {authAPI} from "../api/api";
 
 
 export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
 
     componentDidMount() {
 
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`, {
-            withCredentials:true
-        })
-            .then(response => {
-                let{id,login,email}=response.data.data
+        authAPI.getAuth()
+            .then(data => {
+                let{id,login,email}=data
                 this.props.setAuthForUser(id,login,email)
             })
     }

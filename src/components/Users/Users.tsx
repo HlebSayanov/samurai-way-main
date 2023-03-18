@@ -4,6 +4,7 @@ import userPhoto from "../assets/images/rickAva.png";
 import {ItmesType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {userAPI} from "../api/api";
 
 type UserType = {
     usersPage: ItmesType[]
@@ -36,6 +37,26 @@ export const Users = (props: UserType) => {
                     props.checkedFallow(el.id, !el.followed)
                     console.log(el.followed, el.id)
                 }
+                const onClickHandlerUnfollowUser = () => {
+                    userAPI.unfollowUser(el.id)
+                        .then(data => {
+                            if (data.resultCode === 0) {
+                                props.checkedFallow(el.id, false)
+                            }
+
+                        })
+                }
+
+
+                const onClickHandlerFollowUser = () => {
+                   userAPI.followUser(el.id)
+                        .then(data => {
+                            if (data.resultCode === 0) {
+                                props.checkedFallow(el.id, true)
+                                console.log(data);
+                            }
+                        })
+                }
 
                 return (
                     <div key={el.id}>
@@ -44,32 +65,8 @@ export const Users = (props: UserType) => {
                         </NavLink>
                         <div>
                             {el.followed
-                                ? <button onClick={()=>{
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{
-                                    withCredentials:true,
-
-                                })
-                                    .then(res=>{
-                                        if(res.data.resultCode ===0){
-                                            props.checkedFallow(el.id, false)
-                                        }
-                                        console.log(res);
-                                    })
-                                }
-                                }>Fallow</button>
-                                : <button onClick={()=>{
-                                    axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${el.id}`,{},{
-                                        withCredentials:true,
-
-
-                                    })
-                                        .then(res=>{
-                                            if(res.data.resultCode ===0){
-                                                props.checkedFallow(el.id, true)
-                                            }
-
-                                        })
-                                }}>Unfallow</button>}
+                                ? <button onClick={onClickHandlerUnfollowUser}>Fallow</button>
+                                : <button onClick={onClickHandlerFollowUser}>Unfallow</button>}
                         </div>
 
                         <span> {el.name}</span>
