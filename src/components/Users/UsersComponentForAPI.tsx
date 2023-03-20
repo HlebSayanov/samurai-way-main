@@ -37,9 +37,11 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
                     totalUsers={this.props.totalUsers}
                     pageSizeUsers={this.props.pageSizeUsers}
                     numberPage={this.props.numberPage}
+                    followingProgress={this.props.followingProgress}
                     changePage={this.changePage}
                     usersPage={this.props.usersPage}
                     checkedFallow={this.props.fallowOrUnfollow}
+                    toggleFallowingDisableBtn={this.props.toggleIsFollowingProgressBtnDisabled}
                 />
             </>
         )

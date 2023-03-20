@@ -8,7 +8,7 @@ import {
     setUsers,
     ItmesType,
     setNumberPage,
-    setTotalCounts, toggleIsFetching
+    setTotalCounts, toggleIsFetching, toggleIsFollowingProgressBtnDisabled
 } from "../../redux/users-reducer";
 
 
@@ -19,6 +19,7 @@ type mapStateToPropsType = {
     totalUsers:number
     numberPage:number
     isFetching:boolean
+    followingProgress:Array<number>
 
 }
 type mapDispatchToPropsType = {
@@ -27,6 +28,7 @@ type mapDispatchToPropsType = {
     setNumberPage:(newPage: number) =>void
     setTotalCounts:(count: number) =>void
     toggleIsFetching:(isFetching:boolean)=>void
+    toggleIsFollowingProgressBtnDisabled : (isFetching: boolean,userId:number) => void
 }
 export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
 
@@ -38,7 +40,8 @@ const mapStateToProps = (state:AppStateType):mapStateToPropsType=>{
         pageSizeUsers:state.items.pageSizeUsers,
         totalUsers:state.items.totalUsers,
         numberPage:state.items.numberPage,
-        isFetching:state.items.isFetching
+        isFetching:state.items.isFetching,
+        followingProgress:state.items.followingProgress
 
     }
 }
@@ -68,5 +71,5 @@ const mapStateToProps = (state:AppStateType):mapStateToPropsType=>{
 
 export const UsersContainer = connect(
     mapStateToProps,
-    {fallowOrUnfollow,setUsers,setNumberPage,setTotalCounts,toggleIsFetching})
+    {fallowOrUnfollow,setUsers,setNumberPage,setTotalCounts,toggleIsFetching,toggleIsFollowingProgressBtnDisabled})
 (UsersComponentForAPI)

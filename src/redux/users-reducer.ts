@@ -9,21 +9,29 @@ export type ItmesType = {
     photos: PhotosType
     status: null
     followed: boolean
-
 }
+type FollowingProgressType = {
+    followingProgress:[]
+}
+
 export type ActionsTypes =
     fallowOrUnfollowActionType
     | setUsersActionType
     | setNumberPageActionType
     | setTotalCountsActionType
     | toggleIsFetchingActionType
+    |toggleIsFollowingProgressBtnDisabledActionType
+
+const followingProgressArray:number[]=[]
 
 const initialState = {
     items: [] as ItmesType[],
     pageSizeUsers: 4,
     totalUsers: 0,
     numberPage: 1,
-    isFetching: true
+    isFetching: true,
+    followingProgress: followingProgressArray
+
 
 }
 
@@ -47,6 +55,14 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
             return {...state, totalUsers: action.payload.count}
         case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.payload.isFetching}
+        case "TOGGLE-IS-FOLLOWING-PROGRESS-BUTTON-DISABLED":
+            return {...state,
+                followingProgress: action.payload.isFetching
+                        ? [...state.followingProgress, action.payload.userId]
+                        :state.followingProgress.filter(el=> el !== action.payload.userId)
+
+
+            }
         default:
             return state
     }
@@ -57,6 +73,7 @@ export type  setUsersActionType = ReturnType<typeof setUsers>
 export type  setNumberPageActionType = ReturnType<typeof setNumberPage>
 export type  setTotalCountsActionType = ReturnType<typeof setTotalCounts>
 export type  toggleIsFetchingActionType = ReturnType<typeof toggleIsFetching>
+export type  toggleIsFollowingProgressBtnDisabledActionType = ReturnType<typeof toggleIsFollowingProgressBtnDisabled>
 
 export const fallowOrUnfollow = (usersId: number, isDone: boolean) => {
     return {
@@ -86,6 +103,12 @@ export const toggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE-IS-FETCHING",
         payload: {isFetching}
+    } as const
+}
+export const toggleIsFollowingProgressBtnDisabled = (isFetching: boolean,userId:number) => {
+    return {
+        type: "TOGGLE-IS-FOLLOWING-PROGRESS-BUTTON-DISABLED",
+        payload: {isFetching,userId}
     } as const
 }
 
