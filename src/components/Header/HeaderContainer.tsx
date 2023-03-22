@@ -12,12 +12,12 @@ import {authAPI} from "../api/api";
 export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
 
     componentDidMount() {
-
-        authAPI.getAuth()
-            .then(data => {
-                let{id,login,email}=data
-                this.props.setAuthForUser(id,login,email)
-            })
+        this.props.getAuthThunkCreator()
+        // authAPI.getAuth()
+        //     .then(data => {
+        //         let{id,login,email}=data
+        //         this.props.setAuthForUser(id,login,email)
+        //     })
     }
 
     render() {

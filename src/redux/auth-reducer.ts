@@ -1,3 +1,5 @@
+import {authAPI} from "../components/api/api";
+import {Dispatch} from "redux";
 
 export type ActionsTypes =setAuthForUserActionType
 
@@ -40,4 +42,11 @@ export const setAuthForUser = (id:number, login:string, email:string) => {
         type: "SET_AUTH_FOR_USER",
         data: {id, login,email}
     } as const
+}
+export const getAuthThunkCreator =()=> (dispatch:Dispatch) => {
+    authAPI.getAuth()
+        .then(data => {
+            let{id,login,email}=data
+            dispatch(setAuthForUser(id,login,email))
+        })
 }

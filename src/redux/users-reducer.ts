@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {userAPI} from "../components/api/api";
+
 export type PhotosType = {
     small: null | string
     large: null | string
@@ -11,7 +14,7 @@ export type ItmesType = {
     followed: boolean
 }
 type FollowingProgressType = {
-    followingProgress:[]
+    followingProgress: []
 }
 
 export type ActionsTypes =
@@ -20,9 +23,9 @@ export type ActionsTypes =
     | setNumberPageActionType
     | setTotalCountsActionType
     | toggleIsFetchingActionType
-    |toggleIsFollowingProgressBtnDisabledActionType
+    | toggleIsFollowingProgressBtnDisabledActionType
 
-const followingProgressArray:number[]=[]
+const followingProgressArray: number[] = []
 
 const initialState = {
     items: [] as ItmesType[],
@@ -56,10 +59,11 @@ export const usersReducer = (state: InitialStateType = initialState, action: Act
         case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.payload.isFetching}
         case "TOGGLE-IS-FOLLOWING-PROGRESS-BUTTON-DISABLED":
-            return {...state,
+            return {
+                ...state,
                 followingProgress: action.payload.isFetching
-                        ? [...state.followingProgress, action.payload.userId]
-                        :state.followingProgress.filter(el=> el !== action.payload.userId)
+                    ? [...state.followingProgress, action.payload.userId]
+                    : state.followingProgress.filter(el => el !== action.payload.userId)
 
 
             }
@@ -105,12 +109,49 @@ export const toggleIsFetching = (isFetching: boolean) => {
         payload: {isFetching}
     } as const
 }
-export const toggleIsFollowingProgressBtnDisabled = (isFetching: boolean,userId:number) => {
+export const toggleIsFollowingProgressBtnDisabled = (isFetching: boolean, userId: number) => {
     return {
         type: "TOGGLE-IS-FOLLOWING-PROGRESS-BUTTON-DISABLED",
-        payload: {isFetching,userId}
+        payload: {isFetching, userId}
     } as const
 }
 
 
+export const getUsersThunkCreator = (numberPage: number, pageSizeUsers: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true))
+        userAPI.getUsers(numberPage, pageSizeUsers)
+            .then(data => {
+                dispatch(setNumberPage(numberPage))
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalCounts(data.totalCount > 100 ? 54 : 0))
+            })
+    }
+}
+export const followUserThunkCreator = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgressBtnDisabled(true, userId))
+        userAPI.followUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(fallowOrUnfollow(userId, true))
+                    dispatch(toggleIsFollowingProgressBtnDisabled(false, userId))
 
+                }
+            })
+    }
+}
+export const unfollowUserThunkCreator = (userId: number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFollowingProgressBtnDisabled(true, userId))
+        userAPI.unfollowUser(userId)
+            .then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(fallowOrUnfollow(userId, false))
+                    dispatch(toggleIsFollowingProgressBtnDisabled(false, userId))
+
+                }
+            })
+    }
+}

@@ -8,13 +8,12 @@ import {profileAPI} from "../api/api";
 export class ProfileContainerAPI extends React.Component<PropsType,  ProfileUserType>{
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if(!userId){
-            userId = '2'
-        }
-        profileAPI.getProfile(userId)
-            .then(response => {
-                this.props.setAddProfileUser(response.data)
-            })
+        if(!userId) userId = '2'
+        this.props.getProfileThunkCreator(userId)
+        // profileAPI.getProfile(userId)
+        //     .then(response => {
+        //         this.props.setAddProfileUser(response.data)
+        //     })
     }
     render(){
         return(

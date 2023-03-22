@@ -1,4 +1,5 @@
-
+import {Dispatch} from "redux";
+import {profileAPI} from "../components/api/api";
 
 
 export type ActionsTypesProfiles =
@@ -99,3 +100,12 @@ export const setAddProfileUser = (profileUser: ProfileUserType) => {
         profileUser
     } as const
 }       //  аналогично
+
+export const getProfileThunkCreator = (userId:string)=>{
+    return (dispath:Dispatch)=>{
+        profileAPI.getProfile(userId)
+            .then(response => {
+               dispath(setAddProfileUser(response.data))
+            })
+    }
+}

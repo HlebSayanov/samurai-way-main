@@ -1,6 +1,6 @@
 import React from 'react';
 import {UsersTypeProps} from "./UsersContainer";
-import {ItmesType} from "../../redux/users-reducer";
+import {followUserThunkCreator, getUsersThunkCreator, ItmesType} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {userAPI} from "../api/api";
@@ -9,24 +9,18 @@ import {userAPI} from "../api/api";
 export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesType[]> {
 
     componentDidMount() {
-        this.props.toggleIsFetching(true)
-        userAPI.getUsers(this.props.numberPage,this.props.pageSizeUsers)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-                this.props.setTotalCounts(data.totalCount > 100 ? 54 : 0)
-            })
-
+  this.props.getUsersThunkCreator(this.props.numberPage,this.props.pageSizeUsers)
     }
 
     changePage = (number: number) => {
-        this.props.toggleIsFetching(true)
-        this.props.setNumberPage(number)
-        userAPI.getUsers(number,this.props.pageSizeUsers)
-            .then(data => {
-                this.props.toggleIsFetching(false)
-                this.props.setUsers(data.items)
-            })
+        this.props.getUsersThunkCreator(number,this.props.pageSizeUsers)
+        // this.props.setNumberPage(number)
+        // this.props.toggleIsFetching(true)
+        // userAPI.getUsers(number,this.props.pageSizeUsers)
+        //     .then(data => {
+        //         this.props.toggleIsFetching(false)
+        //         this.props.setUsers(data.items)
+        //     })
     }
 
     render() {
@@ -40,8 +34,8 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
                     followingProgress={this.props.followingProgress}
                     changePage={this.changePage}
                     usersPage={this.props.usersPage}
-                    checkedFallow={this.props.fallowOrUnfollow}
-                    toggleFallowingDisableBtn={this.props.toggleIsFollowingProgressBtnDisabled}
+                    followUserThunkCreator={this.props.followUserThunkCreator}
+                    unfollowUserThunkCreator={this.props.unfollowUserThunkCreator}
                 />
             </>
         )
