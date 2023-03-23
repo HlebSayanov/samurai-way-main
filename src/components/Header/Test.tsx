@@ -13,7 +13,7 @@ import {Dispatch} from "redux";
 export type PropsTypeHeader =MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
-    isAuth: boolean | undefined
+    isAuth: boolean
     login:string | null
 }
 type MapDispatchToPropsType = {

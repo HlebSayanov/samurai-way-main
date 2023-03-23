@@ -1,9 +1,10 @@
 import React from 'react';
 import {UsersTypeProps} from "./UsersContainer";
-import {followUserThunkCreator, getUsersThunkCreator, ItmesType} from "../../redux/users-reducer";
+import { ItmesType} from "../../redux/users-reducer";
 import {Users} from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {userAPI} from "../api/api";
+import {Redirect} from "react-router-dom";
+
 
 
 export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesType[]> {
@@ -14,16 +15,11 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
 
     changePage = (number: number) => {
         this.props.getUsersThunkCreator(number,this.props.pageSizeUsers)
-        // this.props.setNumberPage(number)
-        // this.props.toggleIsFetching(true)
-        // userAPI.getUsers(number,this.props.pageSizeUsers)
-        //     .then(data => {
-        //         this.props.toggleIsFetching(false)
-        //         this.props.setUsers(data.items)
-        //     })
+
     }
 
     render() {
+        !this.props.isAuth && <Redirect to={'/login'}/>
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}

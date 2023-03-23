@@ -11,15 +11,14 @@ import {AppStateType} from "../../redux/store-redux";
 import {Dispatch} from "redux";
 
 
-
-
 export type mapStateToPropsType = {
     dialogItems: DialogType[]
     messageItems: MessageType[]
     NewMessage: string
+    isAuth:boolean
 }
 
- type mapDispatchToPropsType = {
+type mapDispatchToPropsType = {
     addMessageTextArea: (value: string) => void
     AddMessageOnClick: (value: string) => void
 }
@@ -30,7 +29,8 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         dialogItems: state.dialogs.dialogs,
         messageItems: state.dialogs.messages,
-        NewMessage: state.dialogs.newMessageText
+        NewMessage: state.dialogs.newMessageText,
+        isAuth: state.auth.isAuth
     }
 }
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {

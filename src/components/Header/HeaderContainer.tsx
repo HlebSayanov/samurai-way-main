@@ -21,6 +21,7 @@ export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
     }
 
     render() {
+        console.log(this.props.isAuth)
         return <Header login={this.props.login} isAuth={this.props.isAuth}  />;
     }
 }

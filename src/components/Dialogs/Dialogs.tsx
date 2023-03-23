@@ -5,6 +5,7 @@ import {Messages} from "./Messages/Messages";
 
 
 import {DialogsTypeProps} from "./DialogsContainer";
+import {Redirect} from "react-router-dom";
 
 // DialogsTypeProps экспорт из контейнера
 
@@ -25,6 +26,9 @@ export const Dialogs = (props: DialogsTypeProps) => {
     const OnClickHandlerAddMessage = () => {
         props.AddMessageOnClick(message)
     }
+
+
+    if(!props.isAuth) return <Redirect to={'/login'}/>
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>

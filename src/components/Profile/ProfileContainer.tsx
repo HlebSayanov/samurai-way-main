@@ -11,6 +11,7 @@ type MapDispatchToPropsType = {
 }
 type MapStateToPropsType = {
     profileUsers:ProfileUserType
+    isAuth:boolean
 }
 type PathParamsType = {
     userId: string
@@ -23,7 +24,8 @@ export type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
 const mapStateToProps = (state:AppStateType):MapStateToPropsType=>{
     return{
-        profileUsers: state.profiles.profileUser
+        profileUsers: state.profiles.profileUser,
+        isAuth:state.auth.isAuth
     }
 }
 let WithUrlDataContainerComponent = withRouter(ProfileContainerAPI)

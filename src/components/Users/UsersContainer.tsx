@@ -17,6 +17,7 @@ type mapStateToPropsType = {
     numberPage: number
     isFetching: boolean
     followingProgress: Array<number>
+    isAuth:boolean
 
 }
 type mapDispatchToPropsType = {
@@ -34,11 +35,11 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         totalUsers: state.items.totalUsers,
         numberPage: state.items.numberPage,
         isFetching: state.items.isFetching,
-        followingProgress: state.items.followingProgress
+        followingProgress: state.items.followingProgress,
+        isAuth:state.auth.isAuth
 
     }
 }
-
 
 export const UsersContainer = connect(
     mapStateToProps,

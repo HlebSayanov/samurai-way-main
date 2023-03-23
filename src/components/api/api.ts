@@ -31,6 +31,6 @@ export const profileAPI = {
 export const authAPI = {
     getAuth() {
         return instans.get(`auth/me`)
-            .then(response => response.data.data)
+            // .then(response => response.data.data)
     }
 }
