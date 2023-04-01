@@ -3,6 +3,7 @@ import classes from "./ProfileInfo.module.css";
 import {ProfileUserType} from "../../../redux/profiles-reducer";
 import {Preloader} from "../../common/Preloader/Preloader";
 import rick from "../../assets/images/rickandmorty.png"
+import {StatusProfile} from "./StatusProfile";
 
 export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
     if (!props.userProfile.photos) {
@@ -14,9 +15,9 @@ export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
         <>
 
             <div className={classes.headerImg}>
-                <img
-                    src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"
-                    alt="header-image"/>
+                {/*<img*/}
+                {/*    src="https://helpx.adobe.com/content/dam/help/en/photoshop/using/convert-color-image-black-white/jcr_content/main-pars/before_and_after/image-before/Landscape-Color.jpg"*/}
+                {/*    alt="header-image"/>*/}
             </div>
             <div className={classes.userBlock}>
                 <div className={classes.avatar}>
@@ -24,12 +25,19 @@ export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
                          alt="avatar user"/>
                     ava + description
                 </div>
+
                 <div className={classes.description}>
-                    {props.userProfile.aboutMe}
-                    <p>{props.userProfile.fullName}</p>
-                    <p>{props.userProfile.contacts.facebook}</p>
-                    <p>{props.userProfile.contacts.github}</p>
-                    <p>{props.userProfile.contacts.mainLink}</p>
+                    <div>
+                        <StatusProfile value={'only post'}/>
+                    </div>
+                    <ul>
+                        <li>{props.userProfile.aboutMe}</li>
+                        <li>{props.userProfile.fullName}</li>
+                       <li> {props.userProfile.contacts.facebook}</li>
+                        <li>{props.userProfile.contacts.github}</li>
+                        <li>{props.userProfile.contacts.mainLink}</li>
+
+                    </ul>
 
 
                 </div>
