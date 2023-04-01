@@ -10,6 +10,7 @@ export const userAPI = {
     getUsers(numberPage: number, pageSizeUsers: number) {
         return instans.get(`users?page=${numberPage}&count=${pageSizeUsers}`)
             .then(response => response.data)
+
     },
     unfollowUser(id: number) {
         return instans.delete(`follow/${id}`)
@@ -25,6 +26,7 @@ export const userAPI = {
 export const profileAPI = {
     getProfile(userId: string) {
         return instans.get(`profile/` + userId)
+
     }
 }
 

@@ -3,7 +3,7 @@ import styles from "./Users.module.css";
 import userPhoto from "../assets/images/rickAva.png";
 import {ItmesType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {userAPI} from "../api/api";
+import {userAPI} from "../../api/api";
 
 type UserType = {
     usersPage: ItmesType[]

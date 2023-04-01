@@ -1,6 +1,5 @@
 import React from 'react';
 import {connect} from "react-redux";
-import {UsersComponentForAPI} from "./UsersComponentForAPI";
 import {AppStateType} from "../../redux/store-redux";
 import {
     ItmesType,
@@ -8,6 +7,12 @@ import {
     followUserThunkCreator,
     unfollowUserThunkCreator
 } from "../../redux/users-reducer";
+import {Redirect, RouteComponentProps} from "react-router-dom";
+import {Preloader} from "../common/Preloader/Preloader";
+import {Users} from "./Users";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {UsersComponentForAPI} from "./UsersComponentForAPI";
+import {compose} from "redux";
 
 
 type mapStateToPropsType = {
@@ -17,7 +22,7 @@ type mapStateToPropsType = {
     numberPage: number
     isFetching: boolean
     followingProgress: Array<number>
-    isAuth:boolean
+
 
 }
 type mapDispatchToPropsType = {
@@ -28,6 +33,7 @@ type mapDispatchToPropsType = {
 export type UsersTypeProps = mapStateToPropsType & mapDispatchToPropsType
 
 
+
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
         usersPage: state.items.items,
@@ -36,12 +42,14 @@ const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
         numberPage: state.items.numberPage,
         isFetching: state.items.isFetching,
         followingProgress: state.items.followingProgress,
-        isAuth:state.auth.isAuth
+
 
     }
 }
 
-export const UsersContainer = connect(
-    mapStateToProps,
-    {getUsersThunkCreator, followUserThunkCreator, unfollowUserThunkCreator})
-(UsersComponentForAPI)
+export const UsersContainer  =
+    compose<React.ComponentType>(
+        connect(mapStateToProps, {getUsersThunkCreator, followUserThunkCreator, unfollowUserThunkCreator}),
+        WithAuthRedirect
+    )(UsersComponentForAPI)
+

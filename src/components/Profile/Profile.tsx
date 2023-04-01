@@ -9,7 +9,7 @@ import {ProfileUserType} from "../../redux/profiles-reducer";
 
 export const Profile = ( props:{userProfile:ProfileUserType}) => {
 
-
+debugger
     return (
 
         <div className={classes.content}>

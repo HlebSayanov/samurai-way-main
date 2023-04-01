@@ -6,7 +6,7 @@ import {AppStateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
 import {RouteComponentProps} from "react-router-dom";
 import {PropsTypeHeader} from "./Test";
-import {authAPI} from "../api/api";
+import {authAPI} from "../../api/api";
 
 
 export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{

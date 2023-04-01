@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {userAPI} from "../components/api/api";
+import {userAPI} from "../api/api";
 
 export type PhotosType = {
     small: null | string
@@ -125,7 +125,8 @@ export const getUsersThunkCreator = (numberPage: number, pageSizeUsers: number) 
                 dispatch(setNumberPage(numberPage))
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
-                dispatch(setTotalCounts(data.totalCount > 100 ? 54 : 0))
+                dispatch(setTotalCounts(data.totalCount > 100 ? 99 : 0))
+                console.log(data)
             })
     }
 }

@@ -19,7 +19,7 @@ export class UsersComponentForAPI extends React.Component<UsersTypeProps, ItmesT
     }
 
     render() {
-        !this.props.isAuth && <Redirect to={'/login'}/>
+
         return (
             <>
                 {this.props.isFetching ? <Preloader/> : null}

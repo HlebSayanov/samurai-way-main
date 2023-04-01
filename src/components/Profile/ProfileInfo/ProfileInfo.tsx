@@ -27,6 +27,9 @@ export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
                 <div className={classes.description}>
                     {props.userProfile.aboutMe}
                     <p>{props.userProfile.fullName}</p>
+                    <p>{props.userProfile.contacts.facebook}</p>
+                    <p>{props.userProfile.contacts.github}</p>
+                    <p>{props.userProfile.contacts.mainLink}</p>
 
 
                 </div>

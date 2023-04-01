@@ -1,4 +1,4 @@
-import {authAPI} from "../components/api/api";
+import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
 
 export type ActionsTypes = setAuthForUserActionType
