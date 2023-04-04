@@ -5,7 +5,13 @@ import {Preloader} from "../../common/Preloader/Preloader";
 import rick from "../../assets/images/rickandmorty.png"
 import {StatusProfile} from "./StatusProfile";
 
-export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
+type ProfileInfoType = {
+    userProfile: ProfileUserType,
+    status: string
+    updateStatus: (status: string) => void
+}
+
+export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.userProfile.photos) {
         return <Preloader/>
     }
@@ -21,19 +27,22 @@ export const ProfileInfo = (props: { userProfile: ProfileUserType }) => {
             </div>
             <div className={classes.userBlock}>
                 <div className={classes.avatar}>
-                    <img src={ props.userProfile.photos.large || rick}
+                    <img src={props.userProfile.photos.large || rick}
                          alt="avatar user"/>
                     ava + description
                 </div>
 
                 <div className={classes.description}>
                     <div>
-                        <StatusProfile value={'only post'}/>
+                        <StatusProfile
+                            status={props.status}
+                            updateStatus={props.updateStatus}
+                        />
                     </div>
                     <ul>
                         <li>{props.userProfile.aboutMe}</li>
                         <li>{props.userProfile.fullName}</li>
-                       <li> {props.userProfile.contacts.facebook}</li>
+                        <li> {props.userProfile.contacts.facebook}</li>
                         <li>{props.userProfile.contacts.github}</li>
                         <li>{props.userProfile.contacts.mainLink}</li>
 

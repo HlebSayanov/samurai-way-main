@@ -7,6 +7,7 @@ export type ActionsTypesProfiles =
     | ReturnType<typeof addPostAC>
     | ReturnType<typeof updateAddPostAC>
     | ReturnType<typeof setAddProfileUser>
+    | ReturnType<typeof setStatus>
 
 
 export type PostType = {
@@ -14,12 +15,7 @@ export type PostType = {
     message: string,
     likeCount: number
 }
-export type PostDataType = {
-    newPostText: string
-    posts: PostType[]
-    profileUser: ProfileUserType
 
-}
 type ContactsType = {
     "facebook": string
     "website": string
@@ -44,7 +40,12 @@ export type ProfileUserType = {
     "userId": number,
     "photos": PhotosType
 }
-
+export type PostDataType = {
+    newPostText: string
+    posts: PostType[]
+    profileUser: ProfileUserType
+    status:string
+}
 
 const initialState: PostDataType = {
     newPostText: '',
@@ -53,7 +54,8 @@ const initialState: PostDataType = {
         {id: 2, message: 'When I returned home ?', likeCount: 12},
         {id: 3, message: 'When I returned home ?', likeCount: 12}
     ],
-    profileUser: {} as  ProfileUserType
+    profileUser: {} as  ProfileUserType,
+    status :''
 }
 export const profilesReducer = (state: PostDataType = initialState, action: ActionsTypesProfiles): PostDataType => {
 
@@ -71,6 +73,8 @@ export const profilesReducer = (state: PostDataType = initialState, action: Acti
             }
         case "UPDATE-ADD-POST":
             return {...state, newPostText: action.valueEvent}
+        case "SET-STATUS":
+            return {...state, status: action.status}
         case "SET-ADD-PROFILE-USER":
             return {...state, profileUser: action.profileUser}
         default:
@@ -100,13 +104,45 @@ export const setAddProfileUser = (profileUser: ProfileUserType) => {
         profileUser
     } as const
 }       //  аналогично
+export const setStatus = (status: string) => {
+    return {
+        type: "SET-STATUS",
+        status
+    } as const
+}       //  аналогично
 
-export const getProfileThunkCreator = (userId:string)=>{
-    return (dispath:Dispatch)=>{
+
+
+export const getProfileTC = (userId:string)=>{
+    return (dispatch:Dispatch)=>{
         profileAPI.getProfile(userId)
             .then(response => {
-               dispath(setAddProfileUser(response.data))
+               dispatch(setAddProfileUser(response.data))
+
+            })
+    }
+}
+export const getStatusTC = (userId:string)=>{
+    return (dispatch:Dispatch)=>{
+        profileAPI.getStatus(userId)
+            .then(response => {
+               dispatch(setStatus(response.data))
+
+            })
+    }
+}
+export const updateStatusTC = (status:string)=>{
+
+    return (dispatch:Dispatch)=>{
+        profileAPI.updateStatus(status)
+            .then(response => {
+
+                if(response.data.resultCode === 0){
+                    dispatch(setStatus(status))
+                }
+                // dispatch(setStatus(response.data))
                 console.log(response)
+
             })
     }
 }

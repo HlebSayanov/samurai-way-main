@@ -13,11 +13,6 @@ export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
 
     componentDidMount() {
         this.props.getAuthThunkCreator()
-        // authAPI.getAuth()
-        //     .then(data => {
-        //         let{id,login,email}=data
-        //         this.props.setAuthForUser(id,login,email)
-        //     })
     }
 
     render() {
@@ -26,22 +21,4 @@ export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
     }
 }
 
-// export type PropsTypeHeader =MapStateToPropsType & MapDispathToPropsType
-//
-// type MapStateToPropsType = {
-//     auth:AuthType
-// }
-// type MapDispathToPropsType = {
-//     setAuthForUser: (id: number, login: string, email: string) => void
-//
-// }
-//
-//
-// const mapStateToProps =(state:AppStateType):MapStateToPropsType =>{
-//     return {
-//         auth: state.auth
-//     }
-// }
-//
-//     export const Test = connect(mapStateToProps,{setAuthForUser})(HeaderContainer)
-//
+

@@ -25,8 +25,13 @@ export const userAPI = {
 }
 export const profileAPI = {
     getProfile(userId: string) {
-        return instans.get(`profile/` + userId)
-
+        return instans.get(`profile/${userId}` )
+    },
+    getStatus(userId: string) {
+        return instans.get(`/profile/status/`+ userId)
+    },
+    updateStatus(status:string){
+        return instans.put(`/profile/status`, {status})
     }
 }
 

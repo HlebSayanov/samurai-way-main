@@ -7,13 +7,22 @@ import {ProfileUserType} from "../../redux/profiles-reducer";
 
 // Создали контейнер для поста , что бы только у него была логига и связь со сторем
 
-export const Profile = ( props:{userProfile:ProfileUserType}) => {
+type ProfileType = {
+    userProfile:ProfileUserType
+    status:string
+    updateStatus:(status:string)=>void
+}
 
-debugger
+export const Profile = ( props:ProfileType) => {
+
     return (
 
         <div className={classes.content}>
-            <ProfileInfo userProfile={props.userProfile}/>
+            <ProfileInfo
+                userProfile={props.userProfile}
+                status={props.status}
+                updateStatus={props.updateStatus}
+            />
             <MyPostsContainer/>
 
         </div>
