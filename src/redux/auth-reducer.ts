@@ -24,7 +24,6 @@ type InitialStateType = typeof initialState
 export const authReducer = (state: InitialStateType = initialState, action: ActionsTypes): InitialStateType => {
     switch (action.type) {
         case "SET_AUTH_FOR_USER":
-            console.log('sadsa')
             return {
                 ...state,
                 ...action.data,

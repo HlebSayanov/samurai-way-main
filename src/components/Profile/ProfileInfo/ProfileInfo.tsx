@@ -45,7 +45,6 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                         <li> {props.userProfile.contacts.facebook}</li>
                         <li>{props.userProfile.contacts.github}</li>
                         <li>{props.userProfile.contacts.mainLink}</li>
-
                     </ul>
 
 
