@@ -19,34 +19,35 @@ export const Dialogs = (props: DialogsTypeProps) => {
     let message = props.NewMessage
 
     const addMessage = (event: ChangeEvent<HTMLTextAreaElement>) => {
-        let MessageValue = event.currentTarget.value
-        props.addMessageTextArea(MessageValue)
+        let messageValue = event.currentTarget.value
+        props.addMessageTextArea(messageValue)
+
     }
 
     const OnClickHandlerAddMessage = () => {
         props.AddMessageOnClick(message)
+        console.log(message)
     }
-
-
 
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
                 {dialogItems}
                 <textarea onChange={addMessage} value={message}></textarea>
-
                 <button onClick={OnClickHandlerAddMessage}>add message</button>
             </div>
-
-
             <div className={classes.messages}>
-
                 {messageItems}
-
             </div>
-
-
         </div>
     );
 };
 
+
+export const addMessageForm = ()=>{
+    return(
+        <div>
+
+        </div>
+    )
+}

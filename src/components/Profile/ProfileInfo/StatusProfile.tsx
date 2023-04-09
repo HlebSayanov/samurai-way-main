@@ -36,7 +36,7 @@ export class StatusProfile extends React.Component<StatusProfileType> {
     }
 
     componentDidUpdate(prevProps: StatusProfileType, prevState:StateType):void{
-        debugger
+
         if(prevProps.status !== this.props.status){
             this.setState({
                 status: this.props.status
