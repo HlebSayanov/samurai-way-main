@@ -30,8 +30,8 @@ export const Users = (props: UserType) => {
 
     return (
         <>
-            {arrTotalPage.map(el => {
-                return <span onClick={() => props.changePage(el)}
+            {arrTotalPage.map((el,index) => {
+                return <span key={index} onClick={() => props.changePage(el)}
                              className={props.numberPage === el ? styles.numberPage : ''}>{el}</span>
             })}
 

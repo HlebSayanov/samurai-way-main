@@ -1,7 +1,9 @@
 import {authAPI} from "../api/api";
-import {Dispatch} from "redux";
+import {AnyAction, Dispatch} from "redux";
+import {AppStateType} from "./store-redux";
+import {ThunkDispatch} from "redux-thunk";
 
-export type ActionsTypes = setAuthForUserActionType
+export type ActionsTypes = setAuthForUserActionType | logOutAccountActionType
 
 
 export type AuthType = {
@@ -29,12 +31,18 @@ export const authReducer = (state: InitialStateType = initialState, action: Acti
                 ...action.data,
                 isAuth: true
             }
+        case "LOG_OUT_ACCOUNT":
+            return {
+                ...state,
+                ...initialState
+            }
         default:
             return state
     }
 }
 
 export type  setAuthForUserActionType = ReturnType<typeof setAuthForUser>
+export type  logOutAccountActionType = ReturnType<typeof logOutAccountAC>
 
 
 export const setAuthForUser = (id: number, login: string, email: string) => {
@@ -43,14 +51,47 @@ export const setAuthForUser = (id: number, login: string, email: string) => {
         data: {id, login, email}
     } as const
 }
+export const logOutAccountAC = () => {
+    return {
+        type: "LOG_OUT_ACCOUNT",
+    } as const
+}
+
+
 export const getAuthThunkCreator = () => (dispatch: Dispatch) => {
     authAPI.getAuth()
         .then(response => {
-            if(response.data.resultCode === 0){
+            if (response.data.resultCode === 0) {
                 let {id, login, email} = response.data.data
                 dispatch(setAuthForUser(id, login, email))
             }
 
             console.log(response.data.data)
+        })
+}
+type TypedDispatch = ThunkDispatch<AppStateType, any, AnyAction>;
+
+export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: TypedDispatch) => {
+    authAPI.login(email, password, rememberMe)
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(getAuthThunkCreator())
+            }
+            if (response.data.resultCode === 1) {
+                alert(response.data.messages[0])
+            }
+
+        })
+
+
+
+}
+export const logOutTC = () => (dispatch: TypedDispatch) => {
+    authAPI.logout()
+        .then(response => {
+            if (response.data.resultCode === 0) {
+                dispatch(logOutAccountAC())
+            }
+
         })
 }

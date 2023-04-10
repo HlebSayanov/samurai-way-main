@@ -8,13 +8,10 @@ import {Music} from "./components/Music/Music";
 import {News} from "./components/News/News";
 import {Settings} from "./components/Settings/Settings";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {UsersContainer} from "./components/Users/UsersContainer";
-import WithUrlDataContainerComponent, {ProfileContainer} from "./components/Profile/ProfileContainer";
-import {HeaderContainer} from "./components/Header/HeaderContainer";
-import {Test} from "./components/Header/Test";
+import WithUrlDataContainerComponent from "./components/Profile/ProfileContainer";
 import Login from "./components/Login/Login";
-import {Dialogs} from "./components/Dialogs/Dialogs";
-
+import HeaderContainer from "./components/Header/HeaderContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App = () => {
@@ -23,7 +20,7 @@ const App = () => {
     return (
 
         <div className={'app-wrapper'}>
-            <Test/>
+            <HeaderContainer />
             <Navbar/>
             <div className={'app-wrapper-content'}>
                 <Route path={'/profile/:userId?'} render={() => <WithUrlDataContainerComponent/>}/>
@@ -32,7 +29,7 @@ const App = () => {
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>
-                <Route path={'/login'} render={() => <Login/>}/>
+                <Route path={'/login'} render={() => <Login />}/>
 
             </div>
 

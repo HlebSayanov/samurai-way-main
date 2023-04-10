@@ -1,24 +1,43 @@
 import React from "react";
-import {AuthType, setAuthForUser} from "../../redux/auth-reducer";
-import axios from "axios";
-import {Header} from "./Header";
+import {AuthType, getAuthThunkCreator, logOutTC, setAuthForUser} from "../../redux/auth-reducer";
 import {AppStateType} from "../../redux/store-redux";
 import {connect} from "react-redux";
-import {RouteComponentProps} from "react-router-dom";
-import {PropsTypeHeader} from "./Test";
-import {authAPI} from "../../api/api";
+
+import {Header} from "./Header";
 
 
-export class HeaderContainer extends React.Component<PropsTypeHeader, AuthType>{
+type MapStateToPropsType = {
+    isAuth: boolean
+    login: string | null
+}
+type MapDispatchToPropsType = {
+    setAuthForUser: (id: number, login: string, email: string) => void
+    getAuthThunkCreator: () => void
+    logOutTC: () => void
+
+}
+export type PropsTypeHeader = MapStateToPropsType & MapDispatchToPropsType
+
+
+class HeaderContainer extends React.Component<PropsTypeHeader, AuthType> {
 
     componentDidMount() {
         this.props.getAuthThunkCreator()
     }
 
     render() {
-        console.log(this.props.isAuth)
-        return <Header login={this.props.login} isAuth={this.props.isAuth}  />;
+
+        return <Header login={this.props.login} isAuth={this.props.isAuth} logOut={this.props.logOutTC}/>;
     }
 }
 
+
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
+        isAuth: state.auth.isAuth,
+        login: state.auth.login
+    }
+}
+
+export default connect(mapStateToProps, {setAuthForUser, getAuthThunkCreator, logOutTC})(HeaderContainer)
 
