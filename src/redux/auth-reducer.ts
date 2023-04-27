@@ -59,17 +59,17 @@ export const logOutAccountAC = () => {
 
 
 export const getAuthThunkCreator = () => (dispatch: Dispatch) => {
-    authAPI.getAuth()
+  return  authAPI.getAuth()
         .then(response => {
             if (response.data.resultCode === 0) {
                 let {id, login, email} = response.data.data
                 dispatch(setAuthForUser(id, login, email))
             }
 
-            console.log(response.data.data)
+
         })
 }
-type TypedDispatch = ThunkDispatch<AppStateType, any, AnyAction>;
+
 
 export const loginTC = (email: string, password: string, rememberMe: boolean) => (dispatch: TypedDispatch) => {
     authAPI.login(email, password, rememberMe)
@@ -95,3 +95,4 @@ export const logOutTC = () => (dispatch: TypedDispatch) => {
 
         })
 }
+type TypedDispatch = ThunkDispatch<AppStateType, any, AnyAction>;
