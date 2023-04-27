@@ -4,7 +4,7 @@ import preloader from '../../assets/images/luminousRing.gif'
 export const Preloader = () => {
     return (
         <div>
-            <img src={preloader} alt="preloader"/>
+            <img width={100} height={100} src={preloader} alt="preloader"/>
         </div>
     );
 };

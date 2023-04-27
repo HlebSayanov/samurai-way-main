@@ -1,29 +1,23 @@
 import {connect} from "react-redux";
-import {
-    getProfileTC,
-    getStatusTC,
-    ProfileUserType,
-    setAddProfileUser,
-    updateStatusTC
-} from "../../redux/profiles-reducer";
+import {getProfileTC, getStatusTC, ProfileUserType, updateStatusTC} from "../../redux/profiles-reducer";
 import {AppStateType} from "../../redux/store-redux";
 import React from "react";
 
-import {Redirect, RouteComponentProps, withRouter} from "react-router-dom";
+import {RouteComponentProps, withRouter} from "react-router-dom";
 import {Profile} from "./Profile";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
-import Login from "../Login/Login";
 
 
 type MapDispatchToPropsType = {
-    getProfileTC : (userId:string)=> void
-    getStatusTC :(userId:string)=>void
-    updateStatusTC:(status:string)=>void
+    getProfileTC: (userId: string) => void
+    getStatusTC: (userId: string) => void
+    updateStatusTC: (status: string) => void
 }
 type MapStateToPropsType = {
-    profileUsers:ProfileUserType
-    statusProfileUser:string
+    profileUsers: ProfileUserType
+    statusProfileUser: string
+    authorizedUserId: number | null
 
 }
 type PathParamsType = {
@@ -33,18 +27,19 @@ export type ProfilePropsType = MapStateToPropsType & MapDispatchToPropsType
 export type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 
 
- class ProfileContainer extends React.Component<PropsType,  ProfileUserType>{
+class ProfileContainer extends React.Component<PropsType, ProfileUserType> {
 
     componentDidMount() {
         let userId = this.props.match.params.userId
-        if(!userId) userId = '2'
+        if (!userId) userId = this.props.authorizedUserId === null ? '2' : this.props.authorizedUserId.toString()
         this.props.getProfileTC(userId)
         this.props.getStatusTC(userId)
 
     }
-    render(){
 
-        return(
+    render() {
+
+        return (
             <>
 
                 <Profile {...this.props}
@@ -60,16 +55,17 @@ export type PropsType = RouteComponentProps<PathParamsType> & ProfilePropsType
 }
 
 
-const mapStateToProps = (state:AppStateType):MapStateToPropsType=>{
-    return{
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
+    return {
         profileUsers: state.profiles.profileUser,
-        statusProfileUser:state.profiles.status
+        statusProfileUser: state.profiles.status,
+        authorizedUserId:state.auth.id
 
     }
 }
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps,{getProfileTC, getStatusTC,updateStatusTC}),
+    connect(mapStateToProps, {getProfileTC, getStatusTC, updateStatusTC}),
     withRouter,
     WithAuthRedirect
 )

@@ -14,7 +14,7 @@ type LoginType = {
 
 const Login = (props: PropsTypeLogin) => {
     const {register, handleSubmit, reset, formState: {errors, isValid}} = useForm<LoginType>({
-        mode: 'all'
+        mode: 'onChange'
     });
 
     const onSubmit: SubmitHandler<LoginType> = (data) => {
@@ -26,6 +26,7 @@ const Login = (props: PropsTypeLogin) => {
      return  <Redirect to={'/profile'}/>
     }
 
+    console.log(errors.password)
     return (
         <div>
             <h1>LOGIN</h1>
@@ -36,7 +37,12 @@ const Login = (props: PropsTypeLogin) => {
                         minLength: {
                             value: 4,
                             message: 'minimum of 4 characters'
+                        },
+                        pattern: {
+                            value: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                            message: 'Please enter a valid email',
                         }
+
                     })} />
                     {errors.email && <div style={{color: 'red', fontSize: '14px'}}>{errors.email.message}</div>}
                 </div>
@@ -51,12 +57,12 @@ const Login = (props: PropsTypeLogin) => {
                     })} />
 
                     <div style={{color: 'red', fontSize: '14px'}}>
-                        {errors.password && <span>{errors.password.message}</span>}
+                        {errors.password?.ref  ? <span>{errors.password.message}</span> : ''}
                     </div>
 
                 </div>
                 <div>
-                    <input type={"checkbox"}  {...register("rememberMe",)} />
+                    <input type={"checkbox"} {...register("rememberMe",)} />
                     <span>Remember Me</span>
                 </div>
 
@@ -65,6 +71,8 @@ const Login = (props: PropsTypeLogin) => {
         </div>
     );
 };
+
+
 
 type mapDispatchToPropsType = {
     loginTC: (email: string, password: string, rememberMe: boolean) => void

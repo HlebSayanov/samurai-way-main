@@ -13,7 +13,7 @@ type ProfileInfoType = {
 
 export const ProfileInfo = (props: ProfileInfoType) => {
     if (!props.userProfile.photos) {
-        return <Preloader/>
+        return  <div style={{width:'100px'}}> <Preloader/> </div>
     }
 
 
