@@ -73,7 +73,7 @@ class UsersContainer extends React.Component<UsersTypeProps, ItmesType[]> {
 
 const mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-        usersPage: getItems(state),
+        usersPage: getItems(state),                     // функции селектор
         pageSizeUsers: getPageSizeUsers(state),
         totalUsers: getTotalUsers(state),
         numberPage: getNumberPage(state),
