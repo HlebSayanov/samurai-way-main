@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "/samurai-way-main/static/css/main.c8355f12.css",
+    "main.js": "/samurai-way-main/static/js/main.1c074c61.js",
+    "static/media/background1.jpg": "/samurai-way-main/static/media/background1.91df7b8234d57ce6ab59.jpg",
+    "static/media/rickandmorty.png": "/samurai-way-main/static/media/rickandmorty.57fe2d8307db0c6d9e76.png",
+    "static/media/luminousRing.gif": "/samurai-way-main/static/media/luminousRing.6af3b8bcb5bf4fc68018.gif",
+    "static/media/rickAva.png": "/samurai-way-main/static/media/rickAva.a7e39306e5590213eafb.png",
+    "index.html": "/samurai-way-main/index.html",
+    "main.c8355f12.css.map": "/samurai-way-main/static/css/main.c8355f12.css.map",
+    "main.1c074c61.js.map": "/samurai-way-main/static/js/main.1c074c61.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.c8355f12.css",
+    "static/js/main.1c074c61.js"
+  ]
+}
